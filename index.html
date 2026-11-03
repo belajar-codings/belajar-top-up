@@ -1,0 +1,987 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#10141d">
+  <title>Belajar Top Up — Game Top Up</title>
+  <meta name="description" content="Top up game favoritmu dengan mudah di Belajar Top Up.">
+
+  <style>
+    :root {
+      --bg: #10141d;
+      --surface: #191f2b;
+      --surface2: #222a38;
+      --text: #f5f7fb;
+      --muted: #98a3b5;
+      --blue: #5798ff;
+      --cyan: #55e4ef;
+      --border: rgba(255,255,255,.08);
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: auto;
+    }
+
+    /* HEADER */
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(16,20,29,.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .navbar {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 19px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      color: #10141d;
+      font-size: 20px;
+      font-weight: 900;
+    }
+
+    .brand span {
+      color: var(--cyan);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .search-toggle, .menu-toggle {
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--surface);
+      color: white;
+      font-size: 19px;
+    }
+
+    .menu-toggle {
+      display: none;
+    }
+
+    .search-panel {
+      display: none;
+      padding: 0 0 16px;
+    }
+
+    .search-panel.active {
+      display: block;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 14px 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      color: white;
+      outline: none;
+    }
+
+    .search-input:focus {
+      border-color: var(--blue);
+    }
+
+    /* HERO */
+
+    .hero {
+      padding: 28px 0 12px;
+    }
+
+    .hero-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .eyebrow {
+      color: var(--cyan);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 9px;
+    }
+
+    .hero h1 {
+      font-size: clamp(27px, 4vw, 42px);
+      line-height: 1.12;
+      letter-spacing: -1.3px;
+      max-width: 600px;
+    }
+
+    .hero h1 span {
+      color: var(--cyan);
+    }
+
+    .hero-description {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+      max-width: 510px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 10px 13px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      color: #dce5f2;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #53df9a;
+      box-shadow: 0 0 10px #53df9a88;
+    }
+
+    /* PROMO CAROUSEL */
+
+    .promo-wrap {
+      position: relative;
+      overflow: hidden;
+      border-radius: 17px;
+      border: 1px solid var(--border);
+    }
+
+    .promo-track {
+      display: flex;
+      transition: transform .45s ease;
+    }
+
+    .promo-slide {
+      min-width: 100%;
+      min-height: 145px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 30px;
+      overflow: hidden;
+      position: relative;
+      background:
+        radial-gradient(circle at 85% 20%, #55e4ef44, transparent 30%),
+        linear-gradient(110deg, #1e3762, #18243a 65%, #17202d);
+    }
+
+    .promo-slide:nth-child(2) {
+      background:
+        radial-gradient(circle at 85% 20%, #a77aff55, transparent 30%),
+        linear-gradient(110deg, #3b245f, #251d3c 65%, #171c2b);
+    }
+
+    .promo-slide:nth-child(3) {
+      background:
+        radial-gradient(circle at 85% 20%, #ffb35b44, transparent 30%),
+        linear-gradient(110deg, #5c3325, #30242b 65%, #171c2b);
+    }
+
+    .promo-copy {
+      position: relative;
+      z-index: 2;
+    }
+
+    .promo-label {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.7px;
+      color: var(--cyan);
+      margin-bottom: 8px;
+    }
+
+    .promo-slide h2 {
+      font-size: clamp(19px, 3vw, 27px);
+      margin-bottom: 7px;
+    }
+
+    .promo-slide p {
+      color: #d0d8e7;
+      font-size: 13px;
+    }
+
+    .promo-cta {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 9px 14px;
+      border-radius: 9px;
+      background: white;
+      color: #18202c;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .promo-art {
+      font-size: clamp(55px, 10vw, 95px);
+      opacity: .85;
+      filter: drop-shadow(0 10px 25px #0005);
+      transform: rotate(-8deg);
+      margin-right: 30px;
+    }
+
+    .promo-controls {
+      position: absolute;
+      bottom: 12px;
+      right: 15px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      z-index: 5;
+    }
+
+    .promo-dot {
+      width: 7px;
+      height: 7px;
+      border: 0;
+      border-radius: 10px;
+      background: #ffffff66;
+      transition: .2s;
+    }
+
+    .promo-dot.active {
+      width: 20px;
+      background: white;
+    }
+
+    /* SECTIONS */
+
+    .section {
+      padding: 38px 0 8px;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 18px;
+    }
+
+    .section-heading h2 {
+      font-size: 21px;
+      letter-spacing: -.4px;
+    }
+
+    .section-heading p {
+      margin-top: 7px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .view-all {
+      color: var(--cyan);
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    /* POPULAR GAMES */
+
+    .popular-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .popular-card {
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      border-radius: var(--radius);
+      transition: .2s;
+    }
+
+    .popular-card:hover, .game-card:hover {
+      border-color: #5798ff66;
+      transform: translateY(-3px);
+    }
+
+    .game-art {
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      border-radius: 14px;
+      color: white;
+      font-size: 32px;
+      font-weight: 900;
+      text-shadow: 0 3px 10px #0005;
+    }
+
+    .game-art::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(145deg, transparent 35%, #0005);
+    }
+
+    .game-art span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .popular-card .game-art {
+      width: 66px;
+      height: 66px;
+    }
+
+    .game-info {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .game-info h3 {
+      font-size: 14px;
+      line-height: 1.4;
+      margin-bottom: 5px;
+    }
+
+    .game-info p {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .game-arrow {
+      color: var(--muted);
+      font-size: 20px;
+    }
+
+    /* ALL GAMES */
+
+    .all-games {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+    .game-card {
+      min-width: 0;
+      overflow: hidden;
+      border-radius: var(--radius);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      transition: .2s;
+    }
+
+    .game-card .game-art {
+      width: 100%;
+      aspect-ratio: 1 / .83;
+      border-radius: 0;
+      font-size: 45px;
+    }
+
+    .game-card-content {
+      padding: 13px;
+    }
+
+    .game-card h3 {
+      font-size: 13px;
+      line-height: 1.4;
+      margin-bottom: 5px;
+    }
+
+    .game-card p {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .game-card-footer {
+      margin-top: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--cyan);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .empty-state {
+      display: none;
+      color: var(--muted);
+      padding: 30px 0;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    /* ARTWORK COLORS */
+
+    .ml { background: linear-gradient(135deg, #1d5a9b, #15213b 70%); }
+    .ff { background: linear-gradient(135deg, #e87928, #782c25 70%); }
+    .pubg { background: linear-gradient(135deg, #c7a34c, #56462b 70%); }
+    .roblox { background: linear-gradient(135deg, #59616f, #252b36 70%); }
+    .genshin { background: linear-gradient(135deg, #55b9b7, #244b6b 70%); }
+    .hok { background: linear-gradient(135deg, #b74f6d, #492746 70%); }
+    .valorant { background: linear-gradient(135deg, #d65353, #632c3b 70%); }
+    .codm { background: linear-gradient(135deg, #647d72, #293b3d 70%); }
+
+    /* FOOTER */
+
+    .footer {
+      margin-top: 55px;
+      border-top: 1px solid var(--border);
+      padding: 27px 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .footer strong {
+      color: var(--text);
+    }
+
+    @media (max-width: 800px) {
+      .nav-links {
+        gap: 16px;
+      }
+
+      .popular-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .all-games {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .navbar {
+        min-height: 65px;
+        gap: 10px;
+      }
+
+      .brand {
+        font-size: 17px;
+      }
+
+      .brand-mark {
+        width: 33px;
+        height: 33px;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 65px;
+        left: 0;
+        right: 0;
+        padding: 15px 4% 20px;
+        background: #141a25;
+        border-bottom: 1px solid var(--border);
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 13px 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .hero {
+        padding-top: 24px;
+      }
+
+      .hero-top {
+        display: block;
+      }
+
+      .hero-badge {
+        margin-top: 15px;
+      }
+
+      .promo-slide {
+        min-height: 150px;
+        padding: 20px;
+      }
+
+      .promo-art {
+        margin-right: 5px;
+        font-size: 58px;
+      }
+
+      .promo-slide p {
+        max-width: 210px;
+        line-height: 1.5;
+      }
+
+      .promo-cta {
+        margin-top: 10px;
+      }
+
+      .section {
+        padding-top: 30px;
+      }
+
+      .section-heading h2 {
+        font-size: 19px;
+      }
+
+      .popular-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .popular-card {
+        padding: 12px;
+      }
+
+      .popular-card .game-art {
+        width: 58px;
+        height: 58px;
+      }
+
+      .all-games {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 11px;
+      }
+
+      .game-card-content {
+        padding: 11px;
+      }
+
+      .game-card .game-art {
+        aspect-ratio: 1 / .9;
+        font-size: 38px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="container">
+      <nav class="navbar">
+
+        <a href="#" class="brand">
+          <div class="brand-mark">B</div>
+          Belajar<span>Top Up</span>
+        </a>
+
+        <div class="nav-links" id="navLinks">
+          <a href="#home">Beranda</a>
+          <a href="#games">Cari Game</a>
+          <a href="#popular">Game Populer</a>
+          <a href="#footer">Tentang</a>
+        </div>
+
+        <div class="nav-actions">
+          <button class="search-toggle" id="searchToggle" aria-label="Cari game">⌕</button>
+          <button class="menu-toggle" id="menuToggle" aria-label="Buka menu">☰</button>
+        </div>
+
+      </nav>
+
+      <div class="search-panel" id="searchPanel">
+        <input
+          class="search-input"
+          id="searchInput"
+          type="search"
+          placeholder="Cari nama game..."
+          autocomplete="off"
+        >
+      </div>
+    </div>
+  </header>
+
+  <main id="home">
+
+    <section class="hero">
+      <div class="container">
+
+        <div class="hero-top">
+          <div>
+            <div class="eyebrow">Welcome to Belajar Top Up</div>
+            <h1>Top up game favoritmu,<br><span>lebih mudah.</span></h1>
+            <p class="hero-description">
+              Temukan game favoritmu dan siapkan kebutuhan gaming-mu
+              di satu tempat.
+            </p>
+          </div>
+
+          <div class="hero-badge">
+            <span class="status-dot"></span>
+            Game favorit, satu tempat
+          </div>
+        </div>
+
+        <div class="promo-wrap">
+          <div class="promo-track" id="promoTrack">
+
+            <a href="#popular" class="promo-slide">
+              <div class="promo-copy">
+                <div class="promo-label">GAME FAVORIT</div>
+                <h2>Push rank, jangan kehabisan!</h2>
+                <p>Temukan game favoritmu di Belajar Top Up.</p>
+                <span class="promo-cta">Lihat Game →</span>
+              </div>
+              <div class="promo-art">⚔️</div>
+            </a>
+
+            <a href="#games" class="promo-slide">
+              <div class="promo-copy">
+                <div class="promo-label">EXPLORE GAMES</div>
+                <h2>Game pilihanmu ada di sini.</h2>
+                <p>Jelajahi berbagai game dalam satu tempat.</p>
+                <span class="promo-cta">Jelajahi →</span>
+              </div>
+              <div class="promo-art">🎮</div>
+            </a>
+
+            <a href="#games" class="promo-slide">
+              <div class="promo-copy">
+                <div class="promo-label">BELAJAR TOP UP</div>
+                <h2>Mulai petualanganmu.</h2>
+                <p>Pilih game dan bersiap untuk bermain.</p>
+                <span class="promo-cta">Pilih Game →</span>
+              </div>
+              <div class="promo-art">✨</div>
+            </a>
+
+          </div>
+
+          <div class="promo-controls" id="promoControls">
+            <button class="promo-dot active" aria-label="Banner 1"></button>
+            <button class="promo-dot" aria-label="Banner 2"></button>
+            <button class="promo-dot" aria-label="Banner 3"></button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section" id="popular">
+      <div class="container">
+
+        <div class="section-heading">
+          <div>
+            <h2>Game Populer</h2>
+            <p>Game yang paling sering dicari.</p>
+          </div>
+          <a href="#games" class="view-all">Lihat semua →</a>
+        </div>
+
+        <div class="popular-grid">
+
+          <a href="#" class="popular-card game-link" data-game="mobile legends mlbb">
+            <div class="game-art ml"><span>ML</span></div>
+            <div class="game-info">
+              <h3>Mobile Legends</h3>
+              <p>Bang Bang</p>
+            </div>
+            <div class="game-arrow">›</div>
+          </a>
+
+          <a href="#" class="popular-card game-link" data-game="free fire ff">
+            <div class="game-art ff"><span>FF</span></div>
+            <div class="game-info">
+              <h3>Free Fire</h3>
+              <p>Battle Royale</p>
+            </div>
+            <div class="game-arrow">›</div>
+          </a>
+
+          <a href="#" class="popular-card game-link" data-game="pubg mobile">
+            <div class="game-art pubg"><span>P</span></div>
+            <div class="game-info">
+              <h3>PUBG Mobile</h3>
+              <p>Battle Royale</p>
+            </div>
+            <div class="game-arrow">›</div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="games">
+      <div class="container">
+
+        <div class="section-heading">
+          <div>
+            <h2>Semua Game</h2>
+            <p>Pilih game yang ingin kamu mainkan.</p>
+          </div>
+        </div>
+
+        <div class="all-games" id="allGames">
+
+          <a href="#" class="game-card game-link" data-game="mobile legends mlbb">
+            <div class="game-art ml"><span>ML</span></div>
+            <div class="game-card-content">
+              <h3>Mobile Legends</h3>
+              <p>Mobile</p>
+              <div class="game-card-footer"><span>Top Up</span><span>→</span></div>
+            </div>
+          </a>
+
+          <a href="#" class="game-card game-link" data-game="free fire ff">
+            <div class="game-art ff"><span>FF</span></div>
+            <div class="game-card-content">
+              <h3>Free Fire</h3>
+              <p>Mobile</p>
+              <div class="game-card-footer"><span>Top Up</span><span>→</span></div>
+            </div>
+          </a>
+
+          <a href="#" class="game-card game-link" data-game="pubg mobile">
+            <div class="game-art pubg"><span>P</span></div>
+            <div class="game-card-content">
+              <h3>PUBG Mobile</h3>
+              <p>Mobile</p>
+              <div class="game-card-footer"><span>Top Up</span><span>→</span></div>
+            </div>
+          </a>
+
+          <a href="#" class="game-card game-link" data-game="roblox">
+            <div class="game-art roblox"><span>R</span></div>
+            <div class="game-card-content">
+              <h3>Roblox</h3>
+              <p>Mobile · PC</p>
+              <div class="game-card-footer"><span>Top Up</span><span>→</span></div>
+            </div>
+          </a>
+
+          <a href="#" class="game-card game-link" data-game="genshin impact">
+            <div class="game-art genshin"><span>G</span></div>
+            <div class="game-card-content">
+              <h3>Genshin Impact</h3>
+              <p>Mobile · PC</p>
+              <div class="game-card-footer"><span>Top Up</span><span>→</span></div>
+            </div>
+          </a>
+
+          <a href="#" class="game-card game-link" data-game="honor of kings hok">
+            <div class="game-art hok"><span>H</span></div>
+            <div class="game-card-content">
+              <h3>Honor of Kings</h3>
+              <p>Mobile</p>
+              <div class="game-card-footer"><span>Top Up</span><span>→</span></div>
+            </div>
+          </a>
+
+          <a href="#" class="game-card game-link" data-game="valorant">
+            <div class="game-art valorant"><span>V</span></div>
+            <div class="game-card-content">
+              <h3>Valorant</h3>
+              <p>PC</p>
+              <div class="game-card-footer"><span>Top Up</span><span>→</span></div>
+            </div>
+          </a>
+
+          <a href="#" class="game-card game-link" data-game="call of duty mobile codm">
+            <div class="game-art codm"><span>COD</span></div>
+            <div class="game-card-content">
+              <h3>Call of Duty Mobile</h3>
+              <p>Mobile</p>
+              <div class="game-card-footer"><span>Top Up</span><span>→</span></div>
+            </div>
+          </a>
+
+        </div>
+
+        <div class="empty-state" id="emptyState">
+          Game tidak ditemukan. Coba kata kunci lain.
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer" id="footer">
+    <div class="container footer-inner">
+      <div><strong>Belajar Top Up</strong> — Game favorit, satu tempat.</div>
+      <div>© 2026 Belajar Top Up. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    menuToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("active");
+      });
+    });
+
+    // Search panel
+    const searchToggle = document.getElementById("searchToggle");
+    const searchPanel = document.getElementById("searchPanel");
+    const searchInput = document.getElementById("searchInput");
+
+    searchToggle.addEventListener("click", () => {
+      searchPanel.classList.toggle("active");
+
+      if (searchPanel.classList.contains("active")) {
+        searchInput.focus();
+      }
+    });
+
+    // Search game cards
+    const gameCards = document.querySelectorAll(".game-link");
+    const emptyState = document.getElementById("emptyState");
+
+    searchInput.addEventListener("input", () => {
+      const keyword = searchInput.value.toLowerCase().trim();
+      let visibleCount = 0;
+
+      gameCards.forEach(card => {
+        const name = card.dataset.game.toLowerCase();
+        const matched = name.includes(keyword);
+
+        card.style.display = matched ? "" : "none";
+
+        if (matched) visibleCount++;
+      });
+
+      emptyState.style.display = visibleCount === 0 ? "block" : "none";
+    });
+
+    // Promo carousel
+    const promoTrack = document.getElementById("promoTrack");
+    const promoDots = document.querySelectorAll(".promo-dot");
+    let currentSlide = 0;
+    let carouselTimer;
+
+    function showSlide(index) {
+      currentSlide = index;
+      promoTrack.style.transform = `translateX(-${index * 100}%)`;
+
+      promoDots.forEach((dot, i) => {
+        dot.classList.toggle("active", i === index);
+      });
+    }
+
+    function startCarousel() {
+      clearInterval(carouselTimer);
+
+      carouselTimer = setInterval(() => {
+        const next = (currentSlide + 1) % promoDots.length;
+        showSlide(next);
+      }, 5000);
+    }
+
+    promoDots.forEach((dot, index) => {
+      dot.addEventListener("click", () => {
+        showSlide(index);
+        startCarousel();
+      });
+    });
+
+    startCarousel();
+  </script>
+
+</body>
+  </html>
+              
