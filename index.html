@@ -56,7 +56,7 @@
       margin: auto;
     }
 
-    /* HEADER */
+    /* NAVBAR */
 
     .header {
       position: sticky;
@@ -118,7 +118,8 @@
       gap: 10px;
     }
 
-    .search-toggle, .menu-toggle {
+    .search-toggle,
+    .menu-toggle {
       width: 42px;
       height: 42px;
       border: 1px solid var(--border);
@@ -155,70 +156,11 @@
       border-color: var(--blue);
     }
 
-    /* HERO */
+    /* BANNER CAROUSEL */
 
-    .hero {
-      padding: 28px 0 12px;
+    .promo-section {
+      padding: 25px 0 5px;
     }
-
-    .hero-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      margin-bottom: 20px;
-    }
-
-    .eyebrow {
-      color: var(--cyan);
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 9px;
-    }
-
-    .hero h1 {
-      font-size: clamp(27px, 4vw, 42px);
-      line-height: 1.12;
-      letter-spacing: -1.3px;
-      max-width: 600px;
-    }
-
-    .hero h1 span {
-      color: var(--cyan);
-    }
-
-    .hero-description {
-      margin-top: 12px;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.7;
-      max-width: 510px;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 10px 13px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 30px;
-      color: #dce5f2;
-      font-size: 12px;
-      white-space: nowrap;
-    }
-
-    .status-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #53df9a;
-      box-shadow: 0 0 10px #53df9a88;
-    }
-
-    /* PROMO CAROUSEL */
 
     .promo-wrap {
       position: relative;
@@ -234,7 +176,7 @@
 
     .promo-slide {
       min-width: 100%;
-      min-height: 145px;
+      min-height: 155px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -279,6 +221,7 @@
     .promo-slide p {
       color: #d0d8e7;
       font-size: 13px;
+      line-height: 1.5;
     }
 
     .promo-cta {
@@ -324,10 +267,10 @@
       background: white;
     }
 
-    /* SECTIONS */
+    /* SECTION */
 
     .section {
-      padding: 38px 0 8px;
+      padding: 35px 0 8px;
     }
 
     .section-heading {
@@ -355,30 +298,7 @@
       white-space: nowrap;
     }
 
-    /* POPULAR GAMES */
-
-    .popular-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-    }
-
-    .popular-card {
-      min-width: 0;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 14px;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      border-radius: var(--radius);
-      transition: .2s;
-    }
-
-    .popular-card:hover, .game-card:hover {
-      border-color: #5798ff66;
-      transform: translateY(-3px);
-    }
+    /* GAME ART */
 
     .game-art {
       position: relative;
@@ -403,6 +323,64 @@
     .game-art span {
       position: relative;
       z-index: 1;
+    }
+
+    .ml {
+      background: linear-gradient(135deg, #1d5a9b, #15213b 70%);
+    }
+
+    .ff {
+      background: linear-gradient(135deg, #e87928, #782c25 70%);
+    }
+
+    .pubg {
+      background: linear-gradient(135deg, #c7a34c, #56462b 70%);
+    }
+
+    .roblox {
+      background: linear-gradient(135deg, #59616f, #252b36 70%);
+    }
+
+    .genshin {
+      background: linear-gradient(135deg, #55b9b7, #244b6b 70%);
+    }
+
+    .hok {
+      background: linear-gradient(135deg, #b74f6d, #492746 70%);
+    }
+
+    .valorant {
+      background: linear-gradient(135deg, #d65353, #632c3b 70%);
+    }
+
+    .codm {
+      background: linear-gradient(135deg, #647d72, #293b3d 70%);
+    }
+
+    /* POPULAR GAMES */
+
+    .popular-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .popular-card {
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      border-radius: var(--radius);
+      transition: .2s;
+    }
+
+    .popular-card:hover,
+    .game-card:hover {
+      border-color: #5798ff66;
+      transform: translateY(-3px);
     }
 
     .popular-card .game-art {
@@ -489,17 +467,6 @@
       font-size: 14px;
     }
 
-    /* ARTWORK COLORS */
-
-    .ml { background: linear-gradient(135deg, #1d5a9b, #15213b 70%); }
-    .ff { background: linear-gradient(135deg, #e87928, #782c25 70%); }
-    .pubg { background: linear-gradient(135deg, #c7a34c, #56462b 70%); }
-    .roblox { background: linear-gradient(135deg, #59616f, #252b36 70%); }
-    .genshin { background: linear-gradient(135deg, #55b9b7, #244b6b 70%); }
-    .hok { background: linear-gradient(135deg, #b74f6d, #492746 70%); }
-    .valorant { background: linear-gradient(135deg, #d65353, #632c3b 70%); }
-    .codm { background: linear-gradient(135deg, #647d72, #293b3d 70%); }
-
     /* FOOTER */
 
     .footer {
@@ -520,6 +487,8 @@
     .footer strong {
       color: var(--text);
     }
+
+    /* RESPONSIVE */
 
     @media (max-width: 800px) {
       .nav-links {
@@ -577,16 +546,8 @@
         display: block;
       }
 
-      .hero {
-        padding-top: 24px;
-      }
-
-      .hero-top {
-        display: block;
-      }
-
-      .hero-badge {
-        margin-top: 15px;
+      .promo-section {
+        padding-top: 18px;
       }
 
       .promo-slide {
@@ -601,7 +562,6 @@
 
       .promo-slide p {
         max-width: 210px;
-        line-height: 1.5;
       }
 
       .promo-cta {
@@ -653,6 +613,8 @@
 
 <body>
 
+  <!-- NAVBAR -->
+
   <header class="header">
     <div class="container">
       <nav class="navbar">
@@ -690,24 +652,10 @@
 
   <main id="home">
 
-    <section class="hero">
+    <!-- BANNER PROMO -->
+
+    <section class="promo-section">
       <div class="container">
-
-        <div class="hero-top">
-          <div>
-            <div class="eyebrow">Welcome to Belajar Top Up</div>
-            <h1>Top up game favoritmu,<br><span>lebih mudah.</span></h1>
-            <p class="hero-description">
-              Temukan game favoritmu dan siapkan kebutuhan gaming-mu
-              di satu tempat.
-            </p>
-          </div>
-
-          <div class="hero-badge">
-            <span class="status-dot"></span>
-            Game favorit, satu tempat
-          </div>
-        </div>
 
         <div class="promo-wrap">
           <div class="promo-track" id="promoTrack">
@@ -754,6 +702,8 @@
       </div>
     </section>
 
+    <!-- GAME POPULER -->
+
     <section class="section" id="popular">
       <div class="container">
 
@@ -797,6 +747,8 @@
         </div>
       </div>
     </section>
+
+    <!-- SEMUA GAME -->
 
     <section class="section" id="games">
       <div class="container">
@@ -893,6 +845,8 @@
 
   </main>
 
+  <!-- FOOTER -->
+
   <footer class="footer" id="footer">
     <div class="container footer-inner">
       <div><strong>Belajar Top Up</strong> — Game favorit, satu tempat.</div>
@@ -928,7 +882,7 @@
       }
     });
 
-    // Search game cards
+    // Search games
     const gameCards = document.querySelectorAll(".game-link");
     const emptyState = document.getElementById("emptyState");
 
@@ -945,7 +899,8 @@
         if (matched) visibleCount++;
       });
 
-      emptyState.style.display = visibleCount === 0 ? "block" : "none";
+      emptyState.style.display =
+        visibleCount === 0 ? "block" : "none";
     });
 
     // Promo carousel
@@ -956,7 +911,9 @@
 
     function showSlide(index) {
       currentSlide = index;
-      promoTrack.style.transform = `translateX(-${index * 100}%)`;
+
+      promoTrack.style.transform =
+        `translateX(-${index * 100}%)`;
 
       promoDots.forEach((dot, i) => {
         dot.classList.toggle("active", i === index);
@@ -984,4 +941,4 @@
 
 </body>
   </html>
-              
+  
