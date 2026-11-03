@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#10141d">
 
   <title>Belajar Top Up — Game Top Up</title>
-  <meta name="description" content="Top up game favoritmu dengan mudah di Belajar Top Up.">
+  <meta name="description" content="Top up game dan nikmati berbagai layanan digital di Belajar Top Up.">
 
   <!-- FAVICON -->
   <link rel="icon" type="image/png" href="assets/favicon.png">
@@ -21,7 +21,7 @@
       --blue: #5798ff;
       --cyan: #55e4ef;
       --border: rgba(255,255,255,.08);
-      --radius: 18px;
+      --radius: 16px;
     }
 
     * {
@@ -32,6 +32,7 @@
 
     html {
       scroll-behavior: smooth;
+      scroll-padding-top: 90px;
     }
 
     body {
@@ -264,11 +265,12 @@
 
     .section {
       padding: 35px 0 8px;
+      scroll-margin-top: 90px;
     }
 
     .section-heading {
       display: flex;
-      align-items: end;
+      align-items: center;
       justify-content: space-between;
       gap: 15px;
       margin-bottom: 18px;
@@ -279,16 +281,43 @@
       letter-spacing: -.4px;
     }
 
-    .section-heading p {
-      margin-top: 7px;
-      font-size: 13px;
-      color: var(--muted);
+    /* CATEGORY NAVIGATION */
+
+    .category-section {
+      padding: 25px 0 0;
     }
 
-    .view-all {
-      color: var(--cyan);
+    .category-nav {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 3px 1px 12px;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .category-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .category-link {
+      flex-shrink: 0;
+      padding: 11px 17px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--surface);
+      color: var(--muted);
       font-size: 13px;
+      font-weight: 700;
       white-space: nowrap;
+      transition: .2s;
+    }
+
+    .category-link:hover,
+    .category-link.active {
+      color: var(--text);
+      background: #26384d;
+      border-color: #5798ff66;
     }
 
     /* GAME ART */
@@ -350,11 +379,15 @@
       background: linear-gradient(135deg, #647d72, #293b3d 70%);
     }
 
+    .service-art {
+      background: linear-gradient(135deg, #31557b, #202c40 75%);
+    }
+
     /* GAME POPULER */
 
     .popular-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 14px;
     }
 
@@ -389,13 +422,6 @@
     .game-info h3 {
       font-size: 14px;
       line-height: 1.4;
-      margin-bottom: 5px;
-    }
-
-    .game-info p {
-      font-size: 11px;
-      color: var(--muted);
-      line-height: 1.5;
     }
 
     .game-arrow {
@@ -403,11 +429,11 @@
       font-size: 20px;
     }
 
-    /* SEMUA GAME */
+    /* GAME AND SERVICE CARDS */
 
-    .all-games {
+    .card-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 15px;
     }
 
@@ -434,12 +460,7 @@
     .game-card h3 {
       font-size: 13px;
       line-height: 1.4;
-      margin-bottom: 5px;
-    }
-
-    .game-card p {
-      font-size: 11px;
-      color: var(--muted);
+      overflow-wrap: anywhere;
     }
 
     .game-card-footer {
@@ -493,11 +514,20 @@
       }
 
       .popular-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .all-games {
-        grid-template-columns: repeat(3, 1fr);
+      .card-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .game-card-content {
+        padding: 11px;
+      }
+
+      .game-card .game-art {
+        font-size: 38px;
       }
     }
 
@@ -562,39 +592,79 @@
       }
 
       .section {
-        padding-top: 30px;
+        padding-top: 27px;
       }
 
       .section-heading h2 {
         font-size: 19px;
       }
 
+      /* Game Populer: 2 kolom */
+
       .popular-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 10px;
       }
 
       .popular-card {
-        padding: 12px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 9px;
+        padding: 10px;
       }
 
       .popular-card .game-art {
-        width: 58px;
-        height: 58px;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1 / .7;
+        font-size: 32px;
       }
 
-      .all-games {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 11px;
+      .popular-card .game-info h3 {
+        font-size: 12px;
       }
 
-      .game-card-content {
-        padding: 11px;
+      .game-arrow {
+        display: none;
+      }
+
+      /* Semua game dan layanan: 3 kolom */
+
+      .card-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 9px;
+      }
+
+      .game-card {
+        border-radius: 12px;
       }
 
       .game-card .game-art {
         aspect-ratio: 1 / .9;
-        font-size: 38px;
+        font-size: 30px;
+      }
+
+      .game-card-content {
+        padding: 9px;
+      }
+
+      .game-card h3 {
+        font-size: 11px;
+        line-height: 1.35;
+      }
+
+      .game-card-footer {
+        margin-top: 9px;
+        font-size: 10px;
+      }
+
+      .category-section {
+        padding-top: 20px;
+      }
+
+      .category-link {
+        padding: 10px 13px;
+        font-size: 12px;
       }
 
       .footer-inner {
@@ -612,7 +682,7 @@
     <div class="container">
       <nav class="navbar">
 
-        <a href="#" class="brand" aria-label="Belajar Top Up">
+        <a href="#home" class="brand" aria-label="Belajar Top Up">
           <img
             src="assets/logo-navbar.png"
             alt="Belajar Top Up"
@@ -639,7 +709,7 @@
           class="search-input"
           id="searchInput"
           type="search"
-          placeholder="Cari nama game..."
+          placeholder="Cari game atau layanan..."
           autocomplete="off"
         >
       </div>
@@ -704,38 +774,37 @@
       <div class="container">
 
         <div class="section-heading">
-          <div>
-            <h2>Game Populer</h2>
-            <p>Game yang paling sering dicari.</p>
-          </div>
-          <a href="#games" class="view-all">Lihat semua →</a>
+          <h2>Game Populer</h2>
         </div>
 
         <div class="popular-grid">
 
-          <a href="https://belajar-topupstore.vcpanel.id/top-up-ml-murah" class="popular-card game-link" data-game="mobile legends mlbb">
+          <a href="https://belajar-topupstore.vcpanel.id/top-up-ml-murah"
+             class="popular-card game-link"
+             data-game="mobile legends mlbb">
             <div class="game-art ml"><span>ML</span></div>
             <div class="game-info">
               <h3>Mobile Legends</h3>
-              <p>Bang Bang</p>
             </div>
             <div class="game-arrow">›</div>
           </a>
 
-          <a href="#" class="popular-card game-link" data-game="free fire ff">
+          <a href="#"
+             class="popular-card game-link"
+             data-game="free fire ff">
             <div class="game-art ff"><span>FF</span></div>
             <div class="game-info">
               <h3>Free Fire</h3>
-              <p>Battle Royale</p>
             </div>
             <div class="game-arrow">›</div>
           </a>
 
-          <a href="#" class="popular-card game-link" data-game="pubg mobile">
+          <a href="#"
+             class="popular-card game-link"
+             data-game="pubg mobile">
             <div class="game-art pubg"><span>P</span></div>
             <div class="game-info">
               <h3>PUBG Mobile</h3>
-              <p>Battle Royale</p>
             </div>
             <div class="game-arrow">›</div>
           </a>
@@ -744,25 +813,40 @@
       </div>
     </section>
 
+    <!-- NAVIGASI KATEGORI -->
+
+    <section class="category-section">
+      <div class="container">
+
+        <nav class="category-nav" aria-label="Kategori layanan">
+          <a href="#games" class="category-link active">Semua Game</a>
+          <a href="#mlbb-specialist" class="category-link">MLBB Specialist</a>
+          <a href="#joki" class="category-link">Joki</a>
+          <a href="#ewallet" class="category-link">E-wallet</a>
+          <a href="#pulsa-data" class="category-link">Pulsa & Data</a>
+          <a href="#entertainment" class="category-link">Entertainment</a>
+        </nav>
+
+      </div>
+    </section>
+
     <!-- SEMUA GAME -->
 
-    <section class="section" id="games">
+    <section class="section searchable-section" id="games">
       <div class="container">
 
         <div class="section-heading">
-          <div>
-            <h2>Semua Game</h2>
-            <p>Pilih game yang ingin kamu mainkan.</p>
-          </div>
+          <h2>Semua Game</h2>
         </div>
 
-        <div class="all-games" id="allGames">
+        <div class="card-grid">
 
-          <a href="https://belajar-topupstore.vcpanel.id/top-up-ml-murah" class="game-card game-link" data-game="mobile legends mlbb">
+          <a href="https://belajar-topupstore.vcpanel.id/top-up-ml-murah"
+             class="game-card game-link"
+             data-game="mobile legends mlbb">
             <div class="game-art ml"><span>ML</span></div>
             <div class="game-card-content">
               <h3>Mobile Legends</h3>
-              <p>Mobile</p>
               <div class="game-card-footer"><span>Top Up</span><span>→</span></div>
             </div>
           </a>
@@ -771,7 +855,6 @@
             <div class="game-art ff"><span>FF</span></div>
             <div class="game-card-content">
               <h3>Free Fire</h3>
-              <p>Mobile</p>
               <div class="game-card-footer"><span>Top Up</span><span>→</span></div>
             </div>
           </a>
@@ -780,7 +863,6 @@
             <div class="game-art pubg"><span>P</span></div>
             <div class="game-card-content">
               <h3>PUBG Mobile</h3>
-              <p>Mobile</p>
               <div class="game-card-footer"><span>Top Up</span><span>→</span></div>
             </div>
           </a>
@@ -789,7 +871,6 @@
             <div class="game-art roblox"><span>R</span></div>
             <div class="game-card-content">
               <h3>Roblox</h3>
-              <p>Mobile · PC</p>
               <div class="game-card-footer"><span>Top Up</span><span>→</span></div>
             </div>
           </a>
@@ -798,7 +879,6 @@
             <div class="game-art genshin"><span>G</span></div>
             <div class="game-card-content">
               <h3>Genshin Impact</h3>
-              <p>Mobile · PC</p>
               <div class="game-card-footer"><span>Top Up</span><span>→</span></div>
             </div>
           </a>
@@ -807,7 +887,6 @@
             <div class="game-art hok"><span>H</span></div>
             <div class="game-card-content">
               <h3>Honor of Kings</h3>
-              <p>Mobile</p>
               <div class="game-card-footer"><span>Top Up</span><span>→</span></div>
             </div>
           </a>
@@ -816,7 +895,6 @@
             <div class="game-art valorant"><span>V</span></div>
             <div class="game-card-content">
               <h3>Valorant</h3>
-              <p>PC</p>
               <div class="game-card-footer"><span>Top Up</span><span>→</span></div>
             </div>
           </a>
@@ -825,19 +903,242 @@
             <div class="game-art codm"><span>COD</span></div>
             <div class="game-card-content">
               <h3>Call of Duty Mobile</h3>
-              <p>Mobile</p>
               <div class="game-card-footer"><span>Top Up</span><span>→</span></div>
             </div>
           </a>
 
         </div>
-
-        <div class="empty-state" id="emptyState">
-          Game tidak ditemukan. Coba kata kunci lain.
-        </div>
-
       </div>
     </section>
+
+    <!-- MLBB SPECIALIST -->
+
+    <section class="section searchable-section" id="mlbb-specialist">
+      <div class="container">
+
+        <div class="section-heading">
+          <h2>MLBB Specialist</h2>
+        </div>
+
+        <div class="card-grid">
+
+          <a href="#" class="game-card game-link" data-game="top up mlbb indonesia">
+            <div class="game-art ml"><span>ML</span></div>
+            <div class="game-card-content">
+              <h3>Top Up MLBB Indonesia</h3>
+              <div class="game-card-footer"><span>Top Up</span><span>→</span></div>
+            </div>
+          </a>
+
+          <a href="#" class="game-card game-link" data-game="top up mlbb malaysia">
+            <div class="game-art ml"><span>MY</span></div>
+            <div class="game-card-content">
+              <h3>Top Up MLBB Malaysia</h3>
+              <div class="game-card-footer"><span>Top Up</span><span>→</span></div>
+            </div>
+          </a>
+
+          <a href="#" class="game-card game-link" data-game="top up mlbb filipina">
+            <div class="game-art ml"><span>PH</span></div>
+            <div class="game-card-content">
+              <h3>Top Up MLBB Filipina</h3>
+              <div class="game-card-footer"><span>Top Up</span><span>→</span></div>
+            </div>
+          </a>
+
+          <a href="#" class="game-card game-link" data-game="top up mlbb global">
+            <div class="game-art ml"><span>GL</span></div>
+            <div class="game-card-content">
+              <h3>Top Up MLBB Global</h3>
+              <div class="game-card-footer"><span>Top Up</span><span>→</span></div>
+            </div>
+          </a>
+
+          <a href="#" class="game-card game-link" data-game="diamond advance server">
+            <div class="game-art ml"><span>AS</span></div>
+            <div class="game-card-content">
+              <h3>Diamond Advance Server</h3>
+              <div class="game-card-footer"><span>Top Up</span><span>→</span></div>
+            </div>
+          </a>
+
+          <a href="#" class="game-card game-link" data-game="gift skin mlbb">
+            <div class="game-art service-art"><span>GS</span></div>
+            <div class="game-card-content">
+              <h3>Gift Skin</h3>
+              <div class="game-card-footer"><span>Gift</span><span>→</span></div>
+            </div>
+          </a>
+
+          <a href="#" class="game-card game-link" data-game="gift charisma">
+            <div class="game-art service-art"><span>GC</span></div>
+            <div class="game-card-content">
+              <h3>Gift Charisma</h3>
+              <div class="game-card-footer"><span>Gift</span><span>→</span></div>
+            </div>
+          </a>
+
+          <a href="#" class="game-card game-link" data-game="gift starlight">
+            <div class="game-art service-art"><span>SL</span></div>
+            <div class="game-card-content">
+              <h3>Gift Starlight</h3>
+              <div class="game-card-footer"><span>Gift</span><span>→</span></div>
+            </div>
+          </a>
+
+          <a href="#" class="game-card game-link" data-game="sewa squad verif">
+            <div class="game-art service-art"><span>SV</span></div>
+            <div class="game-card-content">
+              <h3>Sewa Squad Verif</h3>
+              <div class="game-card-footer"><span>Sewa</span><span>→</span></div>
+            </div>
+          </a>
+
+          <a href="#" class="game-card game-link" data-game="sewa room tournament">
+            <div class="game-art service-art"><span>RT</span></div>
+            <div class="game-card-content">
+              <h3>Sewa Room Tournament</h3>
+              <div class="game-card-footer"><span>Sewa</span><span>→</span></div>
+            </div>
+          </a>
+
+          <a href="#" class="game-card game-link" data-game="like profil ml">
+            <div class="game-art service-art"><span>LP</span></div>
+            <div class="game-card-content">
+              <h3>Like Profil</h3>
+              <div class="game-card-footer"><span>Layanan</span><span>→</span></div>
+            </div>
+          </a>
+
+          <a href="#" class="game-card game-link" data-game="love album">
+            <div class="game-art service-art"><span>LA</span></div>
+            <div class="game-card-content">
+              <h3>Love Album</h3>
+              <div class="game-card-footer"><span>Layanan</span><span>→</span></div>
+            </div>
+          </a>
+
+          <a href="#" class="game-card game-link" data-game="followers ml">
+            <div class="game-art service-art"><span>FL</span></div>
+            <div class="game-card-content">
+              <h3>Followers ML</h3>
+              <div class="game-card-footer"><span>Layanan</span><span>→</span></div>
+            </div>
+          </a>
+
+          <a href="#" class="game-card game-link" data-game="komen album">
+            <div class="game-art service-art"><span>KA</span></div>
+            <div class="game-card-content">
+              <h3>Komen Album</h3>
+              <div class="game-card-footer"><span>Layanan</span><span>→</span></div>
+            </div>
+          </a>
+
+          <a href="#" class="game-card game-link" data-game="jasa tap event callback">
+            <div class="game-art service-art"><span>EC</span></div>
+            <div class="game-card-content">
+              <h3>Jasa Tap Event Callback</h3>
+              <div class="game-card-footer"><span>Layanan</span><span>→</span></div>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- JOKI -->
+
+    <section class="section searchable-section" id="joki">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Joki</h2>
+        </div>
+
+        <div class="card-grid">
+          <a href="#" class="game-card game-link" data-game="joki">
+            <div class="game-art service-art"><span>JK</span></div>
+            <div class="game-card-content">
+              <h3>Layanan Joki</h3>
+              <div class="game-card-footer"><span>Joki</span><span>→</span></div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- E-WALLET -->
+
+    <section class="section searchable-section" id="ewallet">
+      <div class="container">
+        <div class="section-heading">
+          <h2>E-wallet</h2>
+        </div>
+
+        <div class="card-grid">
+          <a href="#" class="game-card game-link" data-game="e-wallet">
+            <div class="game-art service-art"><span>EW</span></div>
+            <div class="game-card-content">
+              <h3>Top Up E-wallet</h3>
+              <div class="game-card-footer"><span>E-wallet</span><span>→</span></div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PULSA & DATA -->
+
+    <section class="section searchable-section" id="pulsa-data">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Pulsa & Data</h2>
+        </div>
+
+        <div class="card-grid">
+          <a href="#" class="game-card game-link" data-game="pulsa">
+            <div class="game-art service-art"><span>PU</span></div>
+            <div class="game-card-content">
+              <h3>Pulsa</h3>
+              <div class="game-card-footer"><span>Pulsa</span><span>→</span></div>
+            </div>
+          </a>
+
+          <a href="#" class="game-card game-link" data-game="paket data">
+            <div class="game-art service-art"><span>DT</span></div>
+            <div class="game-card-content">
+              <h3>Paket Data</h3>
+              <div class="game-card-footer"><span>Data</span><span>→</span></div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ENTERTAINMENT -->
+
+    <section class="section searchable-section" id="entertainment">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Entertainment</h2>
+        </div>
+
+        <div class="card-grid">
+          <a href="#" class="game-card game-link" data-game="entertainment">
+            <div class="game-art service-art"><span>EN</span></div>
+            <div class="game-card-content">
+              <h3>Entertainment</h3>
+              <div class="game-card-footer"><span>Layanan</span><span>→</span></div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="empty-state" id="emptyState">
+        Game atau layanan tidak ditemukan. Coba kata kunci lain.
+      </div>
+    </div>
 
   </main>
 
@@ -878,8 +1179,9 @@
       }
     });
 
-    // Search games
+    // Search all game and service cards
     const gameCards = document.querySelectorAll(".game-link");
+    const searchableSections = document.querySelectorAll(".searchable-section");
     const emptyState = document.getElementById("emptyState");
 
     searchInput.addEventListener("input", () => {
@@ -888,15 +1190,36 @@
 
       gameCards.forEach(card => {
         const name = card.dataset.game.toLowerCase();
-        const matched = name.includes(keyword);
+        const title = card.querySelector("h3")?.textContent.toLowerCase() || "";
+        const matched = name.includes(keyword) || title.includes(keyword);
 
         card.style.display = matched ? "" : "none";
 
         if (matched) visibleCount++;
       });
 
+      // Hide sections that have no matching cards
+      searchableSections.forEach(section => {
+        const cards = section.querySelectorAll(".game-link");
+        const hasVisibleCard = Array.from(cards).some(card => {
+          return card.style.display !== "none";
+        });
+
+        section.style.display = hasVisibleCard ? "" : "none";
+      });
+
       emptyState.style.display =
-        visibleCount === 0 ? "block" : "none";
+        keyword && visibleCount === 0 ? "block" : "none";
+    });
+
+    // Category active state
+    const categoryLinks = document.querySelectorAll(".category-link");
+
+    categoryLinks.forEach(link => {
+      link.addEventListener("click", () => {
+        categoryLinks.forEach(item => item.classList.remove("active"));
+        link.classList.add("active");
+      });
     });
 
     // Promo carousel
@@ -936,4 +1259,5 @@
   </script>
 
 </body>
-</html>
+              </html>
+              
