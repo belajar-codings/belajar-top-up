@@ -1,0 +1,1519 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#10141d">
+
+  <title>Belajar Top Up — Game Top Up</title>
+  <meta name="description" content="Belajar Top Up — tempat top up game dan layanan digital.">
+
+  <link rel="icon" href="assets/favicon.png">
+
+  <style>
+    :root {
+      --bg: #10141d;
+      --bg-card: #171d29;
+      --bg-card-hover: #1d2635;
+      --primary: #168fff;
+      --cyan: #35dfff;
+      --white: #ffffff;
+      --muted: #9aa7b8;
+      --border: rgba(255,255,255,0.08);
+      --radius: 14px;
+      --surface: #191f2b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--white);
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: auto;
+    }
+
+    /* NAVBAR */
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(16,20,29,.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .navbar {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .brand-logo {
+      display: block;
+      width: 180px;
+      height: auto;
+      max-height: 55px;
+      object-fit: contain;
+      object-position: left center;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .search-toggle,
+    .menu-toggle {
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--surface);
+      color: white;
+      font-size: 19px;
+    }
+
+    .menu-toggle {
+      display: none;
+    }
+
+    /* SEARCH PANEL */
+
+    .search-panel {
+      display: none;
+      position: relative;
+      padding: 0 0 16px;
+    }
+
+    .search-panel.active {
+      display: block;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 14px 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      color: white;
+      outline: none;
+    }
+
+    .search-input:focus {
+      border-color: var(--primary);
+    }
+
+    /* SEARCH DROPDOWN */
+
+    .search-results {
+      display: none;
+      position: absolute;
+      top: calc(100% - 8px);
+      left: 0;
+      right: 0;
+      z-index: 100;
+      max-height: 360px;
+      overflow-y: auto;
+      background: #171d29;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      box-shadow: 0 12px 35px rgba(0,0,0,.4);
+    }
+
+    .search-results.active {
+      display: block;
+    }
+
+    .search-result-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      padding: 12px 14px;
+      border: none;
+      border-bottom: 1px solid var(--border);
+      background: transparent;
+      color: white;
+      text-align: left;
+      transition: background .2s;
+    }
+
+    .search-result-item:last-child {
+      border-bottom: none;
+    }
+
+    .search-result-item:hover {
+      background: var(--bg-card-hover);
+    }
+
+    .search-result-item img {
+      width: 42px;
+      height: 42px;
+      flex-shrink: 0;
+      object-fit: cover;
+      border-radius: 9px;
+      background: #202a39;
+    }
+
+    .search-result-info {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      min-width: 0;
+    }
+
+    .search-result-name {
+      font-size: 13px;
+      font-weight: 700;
+      overflow-wrap: anywhere;
+    }
+
+    .search-result-category {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .search-result-arrow {
+      margin-left: auto;
+      color: var(--muted);
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .search-result-message {
+      padding: 16px;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    /* BANNER CAROUSEL */
+
+    .promo-section {
+      padding: 25px 0 5px;
+    }
+
+    .promo-wrap {
+      position: relative;
+      overflow: hidden;
+      border-radius: 17px;
+      border: 1px solid var(--border);
+    }
+
+    .promo-track {
+      display: flex;
+      transition: transform .45s ease;
+    }
+
+    .promo-slide {
+      min-width: 100%;
+      min-height: 155px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 30px;
+      overflow: hidden;
+      position: relative;
+      background:
+        radial-gradient(circle at 85% 20%, #55e4ef44, transparent 30%),
+        linear-gradient(110deg, #1e3762, #18243a 65%, #17202d);
+    }
+
+    .promo-slide:nth-child(2) {
+      background:
+        radial-gradient(circle at 85% 20%, #a77aff55, transparent 30%),
+        linear-gradient(110deg, #3b245f, #251d3c 65%, #171c2b);
+    }
+
+    .promo-slide:nth-child(3) {
+      background:
+        radial-gradient(circle at 85% 20%, #ffb35b44, transparent 30%),
+        linear-gradient(110deg, #5c3325, #30242b 65%, #171c2b);
+    }
+
+    .promo-copy {
+      position: relative;
+      z-index: 2;
+    }
+
+    .promo-label {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.7px;
+      color: var(--cyan);
+      margin-bottom: 8px;
+    }
+
+    .promo-slide h2 {
+      font-size: clamp(19px, 3vw, 27px);
+      margin-bottom: 7px;
+    }
+
+    .promo-slide p {
+      color: #d0d8e7;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .promo-cta {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 9px 14px;
+      border-radius: 9px;
+      background: white;
+      color: #18202c;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .promo-art {
+      font-size: clamp(55px, 10vw, 95px);
+      opacity: .85;
+      filter: drop-shadow(0 10px 25px #0005);
+      transform: rotate(-8deg);
+      margin-right: 30px;
+    }
+
+    .promo-controls {
+      position: absolute;
+      bottom: 12px;
+      right: 15px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      z-index: 5;
+    }
+
+    .promo-dot {
+      width: 7px;
+      height: 7px;
+      border: 0;
+      border-radius: 10px;
+      background: #ffffff66;
+      transition: .2s;
+    }
+
+    .promo-dot.active {
+      width: 20px;
+      background: white;
+    }
+
+    /* SECTION */
+
+    .section {
+      padding: 12px 0 30px;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .section-heading h2 {
+      font-size: 21px;
+      line-height: 1.3;
+    }
+
+    /* POPULAR GAMES */
+
+    .popular-grid {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .popular-card {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+      transition: 0.2s;
+      min-width: 0;
+    }
+
+    .popular-card:hover {
+      background: var(--bg-card-hover);
+      border-color: rgba(22,143,255,0.4);
+      transform: translateY(-2px);
+    }
+
+    .popular-card img {
+      width: 42px;
+      height: 42px;
+      border-radius: 9px;
+      object-fit: cover;
+      flex-shrink: 0;
+      background: #222b39;
+    }
+
+    .popular-card h3 {
+      font-size: 12px;
+      line-height: 1.4;
+      overflow-wrap: anywhere;
+    }
+
+    /* CATEGORY TABS */
+
+    .category-section {
+      padding: 6px 0 28px;
+    }
+
+    .category-tabs {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 2px 1px 12px;
+      scrollbar-width: thin;
+      scrollbar-color: #35445a transparent;
+    }
+
+    .category-tab {
+      flex-shrink: 0;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      background: var(--bg-card);
+      border-radius: 10px;
+      padding: 11px 16px;
+      font-size: 13px;
+      font-weight: 700;
+      transition: 0.2s;
+    }
+
+    .category-tab:hover {
+      color: white;
+      border-color: rgba(22,143,255,0.5);
+    }
+
+    .category-tab.active {
+      color: white;
+      border-color: var(--primary);
+      background: linear-gradient(135deg, #168fff, #1265c7);
+      box-shadow: 0 5px 18px rgba(22,143,255,0.15);
+    }
+
+    /* PRODUCT AREA */
+
+    .product-section {
+      padding: 4px 0 48px;
+    }
+
+    .product-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .product-heading h2 {
+      font-size: 21px;
+    }
+
+    .product-count {
+      font-size: 12px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .product-card {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      overflow: hidden;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      transition: 0.2s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(22,143,255,0.45);
+      background: var(--bg-card-hover);
+    }
+
+    .product-image {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: #202a39;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .product-placeholder {
+      font-size: 28px;
+      color: var(--cyan);
+      font-weight: 700;
+    }
+
+    .product-info {
+      padding: 11px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+    }
+
+    .product-info h3 {
+      font-size: 12px;
+      line-height: 1.5;
+      min-height: 36px;
+      overflow-wrap: anywhere;
+    }
+
+    .product-price {
+      font-size: 11px;
+      color: var(--cyan);
+      font-weight: 700;
+    }
+
+    .product-button {
+      display: block;
+      width: 100%;
+      text-align: center;
+      border: none;
+      border-radius: 7px;
+      background: #168fff;
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 9px 5px;
+      margin-top: auto;
+      transition: 0.2s;
+    }
+
+    .product-button:hover {
+      background: #0877df;
+    }
+
+    .empty-state {
+      display: none;
+      text-align: center;
+      color: var(--muted);
+      padding: 40px 15px;
+      border: 1px dashed var(--border);
+      border-radius: 12px;
+      font-size: 14px;
+    }
+
+    /* FOOTER */
+
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 26px 0;
+      color: var(--muted);
+      font-size: 12px;
+      text-align: center;
+      line-height: 1.7;
+    }
+
+    .footer strong {
+      color: white;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 900px) {
+      .popular-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .product-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        width: 92%;
+      }
+
+      .navbar {
+        min-height: 65px;
+        gap: 10px;
+      }
+
+      .brand-logo {
+        width: 145px;
+        max-height: 48px;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 65px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 15px 4% 20px;
+        background: #141a25;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 13px 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav-links a:last-child {
+        border-bottom: none;
+      }
+
+      .promo-section {
+        padding-top: 18px;
+      }
+
+      .promo-slide {
+        min-height: 150px;
+        padding: 20px;
+      }
+
+      .promo-art {
+        margin-right: 5px;
+        font-size: 58px;
+      }
+
+      .promo-slide p {
+        max-width: 210px;
+      }
+
+      .promo-cta {
+        margin-top: 10px;
+      }
+
+      .section-heading h2,
+      .product-heading h2 {
+        font-size: 18px;
+      }
+
+      .popular-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .popular-card {
+        padding: 9px;
+        gap: 8px;
+      }
+
+      .popular-card img {
+        width: 36px;
+        height: 36px;
+      }
+
+      .popular-card h3 {
+        font-size: 11px;
+      }
+
+      .category-tab {
+        padding: 10px 13px;
+        font-size: 12px;
+      }
+
+      .product-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 9px;
+      }
+
+      .product-info {
+        padding: 8px;
+        gap: 7px;
+      }
+
+      .product-info h3 {
+        font-size: 11px;
+        min-height: 34px;
+      }
+
+      .product-price {
+        font-size: 10px;
+      }
+
+      .product-button {
+        font-size: 10px;
+        padding: 8px 3px;
+      }
+
+      .product-heading {
+        align-items: flex-start;
+      }
+
+      .search-result-item {
+        padding: 11px;
+      }
+
+      .search-result-item img {
+        width: 38px;
+        height: 38px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <header class="header">
+    <div class="container">
+      <nav class="navbar">
+
+        <a href="#beranda" class="brand" aria-label="Belajar Top Up">
+          <img
+            src="assets/logo-navbar.png"
+            alt="Belajar Top Up"
+            class="brand-logo"
+          >
+        </a>
+
+        <div class="nav-links" id="navLinks">
+          <a href="#beranda">Beranda</a>
+          <a href="#game-populer">Game Populer</a>
+          <a href="#produk">Produk</a>
+          <a href="#tentang">Tentang</a>
+        </div>
+
+        <div class="nav-actions">
+          <button class="search-toggle" id="searchToggle" aria-label="Cari game">⌕</button>
+          <button class="menu-toggle" id="menuToggle" aria-label="Buka menu">☰</button>
+        </div>
+
+      </nav>
+
+      <div class="search-panel" id="searchPanel">
+        <input
+          class="search-input"
+          id="searchInput"
+          type="search"
+          placeholder="Cari game atau produk..."
+          autocomplete="off"
+          aria-label="Cari game atau produk"
+          aria-expanded="false"
+          aria-controls="searchResults"
+        >
+
+        <div class="search-results" id="searchResults"></div>
+      </div>
+    </div>
+  </header>
+
+  <main id="beranda">
+
+    <!-- BANNER PROMO / SLIDER -->
+
+    <section class="promo-section">
+      <div class="container">
+
+        <div class="promo-wrap">
+          <div class="promo-track" id="promoTrack">
+
+            <a href="#game-populer" class="promo-slide">
+              <div class="promo-copy">
+                <div class="promo-label">GAME FAVORIT</div>
+                <h2>Push rank, jangan kehabisan!</h2>
+                <p>Temukan game favoritmu di Belajar Top Up.</p>
+                <span class="promo-cta">Lihat Game →</span>
+              </div>
+              <div class="promo-art">⚔️</div>
+            </a>
+
+            <a href="#produk" class="promo-slide">
+              <div class="promo-copy">
+                <div class="promo-label">EXPLORE GAMES</div>
+                <h2>Game pilihanmu ada di sini.</h2>
+                <p>Jelajahi berbagai game dalam satu tempat.</p>
+                <span class="promo-cta">Jelajahi →</span>
+              </div>
+              <div class="promo-art">🎮</div>
+            </a>
+
+            <a href="#produk" class="promo-slide">
+              <div class="promo-copy">
+                <div class="promo-label">BELAJAR TOP UP</div>
+                <h2>Mulai petualanganmu.</h2>
+                <p>Pilih game dan bersiap untuk bermain.</p>
+                <span class="promo-cta">Pilih Game →</span>
+              </div>
+              <div class="promo-art">✨</div>
+            </a>
+
+          </div>
+
+          <div class="promo-controls" id="promoControls">
+            <button class="promo-dot active" aria-label="Banner 1"></button>
+            <button class="promo-dot" aria-label="Banner 2"></button>
+            <button class="promo-dot" aria-label="Banner 3"></button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- POPULAR GAMES -->
+
+    <section class="section" id="game-populer">
+      <div class="container">
+
+        <div class="section-heading">
+          <h2>Game Populer</h2>
+        </div>
+
+        <div class="popular-grid">
+
+          <a
+            class="popular-card"
+            href="https://belajar-topupstore.vcpanel.id/top-up-ml-murah"
+          >
+            <img src="assets/mlbb.png" alt="Mobile Legends">
+            <h3>Mobile Legends</h3>
+          </a>
+
+          <a class="popular-card" href="#produk" data-category="semua-game">
+            <img src="assets/free-fire.png" alt="Free Fire">
+            <h3>Free Fire</h3>
+          </a>
+
+          <a class="popular-card" href="#produk" data-category="semua-game">
+            <img src="assets/pubg.png" alt="PUBG Mobile">
+            <h3>PUBG Mobile</h3>
+          </a>
+
+          <a class="popular-card" href="#produk" data-category="semua-game">
+            <img src="assets/roblox.png" alt="Roblox">
+            <h3>Roblox</h3>
+          </a>
+
+          <a class="popular-card" href="#produk" data-category="semua-game">
+            <img src="assets/genshin.png" alt="Genshin Impact">
+            <h3>Genshin Impact</h3>
+          </a>
+
+          <a class="popular-card" href="#produk" data-category="semua-game">
+            <img src="assets/hok.png" alt="Honor of Kings">
+            <h3>Honor of Kings</h3>
+          </a>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CATEGORY TABS -->
+
+    <section class="category-section">
+      <div class="container">
+
+        <div class="section-heading">
+          <h2>Kategori</h2>
+        </div>
+
+        <div class="category-tabs" id="categoryTabs">
+
+          <button class="category-tab active" data-category="semua-game">
+            Semua Game
+          </button>
+
+          <button class="category-tab" data-category="mlbb-specialist">
+            MLBB Specialist
+          </button>
+
+          <button class="category-tab" data-category="joki">
+            Joki
+          </button>
+
+          <button class="category-tab" data-category="ewallet">
+            E-wallet
+          </button>
+
+          <button class="category-tab" data-category="pulsa-data">
+            Pulsa & Data
+          </button>
+
+          <button class="category-tab" data-category="entertainment">
+            Entertainment
+          </button>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PRODUCT AREA -->
+
+    <section class="product-section" id="produk">
+      <div class="container">
+
+        <div class="product-heading">
+          <h2 id="productTitle">Semua Game</h2>
+          <span class="product-count" id="productCount"></span>
+        </div>
+
+        <div class="product-grid" id="productGrid"></div>
+
+        <div class="empty-state" id="emptyState">
+          Produk tidak ditemukan.
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+
+  <footer class="footer" id="tentang">
+    <div class="container">
+      <strong>Belajar Top Up</strong>
+      <p>Top Up Game dan Layanan Digital</p>
+      <p>© <span id="year"></span> Belajar Top Up. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    /* DATA PRODUK */
+
+    const productData = {
+
+      "semua-game": {
+        title: "Semua Game",
+        products: [
+          {
+            name: "Mobile Legends",
+            image: "assets/mlbb.png",
+            link: "https://belajar-topupstore.vcpanel.id/top-up-ml-murah"
+          },
+          {
+            name: "Free Fire",
+            image: "assets/free-fire.png",
+            link: "#"
+          },
+          {
+            name: "PUBG Mobile",
+            image: "assets/pubg.png",
+            link: "#"
+          },
+          {
+            name: "Roblox",
+            image: "assets/roblox.png",
+            link: "#"
+          },
+          {
+            name: "Genshin Impact",
+            image: "assets/genshin.png",
+            link: "#"
+          },
+          {
+            name: "Honor of Kings",
+            image: "assets/hok.png",
+            link: "#"
+          },
+          {
+            name: "Valorant",
+            image: "assets/valorant.png",
+            link: "#"
+          },
+          {
+            name: "Call of Duty Mobile",
+            image: "assets/codm.png",
+            link: "#"
+          }
+        ]
+      },
+
+      "mlbb-specialist": {
+        title: "MLBB Specialist",
+        products: [
+          {
+            name: "Top Up MLBB Indonesia",
+            image: "assets/mlbb.png",
+            link: "https://belajar-topupstore.vcpanel.id/top-up-ml-murah"
+          },
+          {
+            name: "Top Up MLBB Malaysia",
+            image: "assets/mlbb.png",
+            link: "#"
+          },
+          {
+            name: "Top Up MLBB Filipina",
+            image: "assets/mlbb.png",
+            link: "#"
+          },
+          {
+            name: "Top Up MLBB Global",
+            image: "assets/mlbb.png",
+            link: "#"
+          },
+          {
+            name: "Diamond Advance Server",
+            image: "assets/mlbb.png",
+            link: "#"
+          },
+          {
+            name: "Gift Skin",
+            image: "assets/mlbb.png",
+            link: "#"
+          },
+          {
+            name: "Gift Charisma",
+            image: "assets/mlbb.png",
+            link: "#"
+          },
+          {
+            name: "Gift Starlight",
+            image: "assets/mlbb.png",
+            link: "#"
+          },
+          {
+            name: "Sewa Squad Verif",
+            image: "assets/mlbb.png",
+            link: "#"
+          },
+          {
+            name: "Sewa Room Tournament",
+            image: "assets/mlbb.png",
+            link: "#"
+          },
+          {
+            name: "Like Profil",
+            image: "assets/mlbb.png",
+            link: "#"
+          },
+          {
+            name: "Love Album",
+            image: "assets/mlbb.png",
+            link: "#"
+          },
+          {
+            name: "Followers ML",
+            image: "assets/mlbb.png",
+            link: "#"
+          },
+          {
+            name: "Komen Album",
+            image: "assets/mlbb.png",
+            link: "#"
+          },
+          {
+            name: "Jasa Tap Event Callback",
+            image: "assets/mlbb.png",
+            link: "#"
+          }
+        ]
+      },
+
+      "joki": {
+        title: "Joki",
+        products: [
+          {
+            name: "Joki Rank Mobile Legends",
+            image: "assets/mlbb.png",
+            link: "#"
+          },
+          {
+            name: "Joki Misi Mobile Legends",
+            image: "assets/mlbb.png",
+            link: "#"
+          }
+        ]
+      },
+
+      "ewallet": {
+        title: "E-wallet",
+        products: [
+          {
+            name: "DANA",
+            image: "assets/dana.png",
+            link: "#"
+          },
+          {
+            name: "GoPay",
+            image: "assets/gopay.png",
+            link: "#"
+          },
+          {
+            name: "OVO",
+            image: "assets/ovo.png",
+            link: "#"
+          },
+          {
+            name: "ShopeePay",
+            image: "assets/shopeepay.png",
+            link: "#"
+          }
+        ]
+      },
+
+      "pulsa-data": {
+        title: "Pulsa & Data",
+        products: [
+          {
+            name: "Pulsa Telkomsel",
+            image: "assets/telkomsel.png",
+            link: "#"
+          },
+          {
+            name: "Pulsa Indosat",
+            image: "assets/indosat.png",
+            link: "#"
+          },
+          {
+            name: "Pulsa XL",
+            image: "assets/xl.png",
+            link: "#"
+          },
+          {
+            name: "Paket Data",
+            image: "assets/data.png",
+            link: "#"
+          }
+        ]
+      },
+
+      "entertainment": {
+        title: "Entertainment",
+        products: [
+          {
+            name: "Netflix",
+            image: "assets/netflix.png",
+            link: "#"
+          },
+          {
+            name: "Spotify",
+            image: "assets/spotify.png",
+            link: "#"
+          },
+          {
+            name: "YouTube Premium",
+            image: "assets/youtube.png",
+            link: "#"
+          }
+        ]
+      }
+
+    };
+
+    /* ELEMENTS */
+
+    const productGrid = document.getElementById("productGrid");
+    const productTitle = document.getElementById("productTitle");
+    const productCount = document.getElementById("productCount");
+    const emptyState = document.getElementById("emptyState");
+
+    const searchInput = document.getElementById("searchInput");
+    const searchResults = document.getElementById("searchResults");
+
+    const categoryTabs = document.querySelectorAll(".category-tab");
+
+    let activeCategory = "semua-game";
+
+    /* RENDER PRODUK DI HALAMAN */
+
+    function renderProducts(category, searchTerm = "") {
+      const categoryData = productData[category];
+
+      if (!categoryData) return;
+
+      activeCategory = category;
+      productTitle.textContent = categoryData.title;
+
+      const filteredProducts = categoryData.products.filter(product =>
+        product.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+
+      productGrid.innerHTML = "";
+
+      productCount.textContent =
+        filteredProducts.length + " produk";
+
+      emptyState.style.display =
+        filteredProducts.length === 0 ? "block" : "none";
+
+      filteredProducts.forEach(product => {
+        const card = document.createElement("article");
+        card.className = "product-card";
+
+        const imageWrap = document.createElement("div");
+        imageWrap.className = "product-image";
+
+        const image = document.createElement("img");
+        image.src = product.image;
+        image.alt = product.name;
+        image.loading = "lazy";
+
+        image.onerror = function() {
+          imageWrap.innerHTML =
+            '<span class="product-placeholder">+</span>';
+        };
+
+        imageWrap.appendChild(image);
+
+        const info = document.createElement("div");
+        info.className = "product-info";
+
+        const name = document.createElement("h3");
+        name.textContent = product.name;
+
+        const price = document.createElement("div");
+        price.className = "product-price";
+        price.textContent = "Cek harga";
+
+        const button = document.createElement("a");
+        button.className = "product-button";
+        button.textContent = "Pilih Produk";
+        button.href = product.link;
+
+        if (product.link === "#") {
+          button.addEventListener("click", function(event) {
+            event.preventDefault();
+            alert("Link produk ini belum tersedia.");
+          });
+        }
+
+        info.appendChild(name);
+        info.appendChild(price);
+        info.appendChild(button);
+
+        card.appendChild(imageWrap);
+        card.appendChild(info);
+
+        productGrid.appendChild(card);
+      });
+    }
+
+    /* SEARCH DROPDOWN: CARI SEMUA KATEGORI */
+
+    function closeSearchResults() {
+      searchResults.classList.remove("active");
+      searchResults.innerHTML = "";
+      searchInput.setAttribute("aria-expanded", "false");
+    }
+
+    function showSearchResults(searchTerm) {
+      const term = searchTerm.trim().toLowerCase();
+
+      searchResults.innerHTML = "";
+
+      // Belum menampilkan hasil jika kurang dari 3 huruf
+      if (term.length < 3) {
+        closeSearchResults();
+        return;
+      }
+
+      const matches = [];
+
+      // Cari produk dari seluruh kategori
+      Object.entries(productData).forEach(([categoryKey, categoryData]) => {
+        categoryData.products.forEach(product => {
+          if (product.name.toLowerCase().includes(term)) {
+            matches.push({
+              ...product,
+              category: categoryData.title,
+              categoryKey: categoryKey
+            });
+          }
+        });
+      });
+
+      searchResults.classList.add("active");
+      searchInput.setAttribute("aria-expanded", "true");
+
+      if (matches.length === 0) {
+        const message = document.createElement("div");
+        message.className = "search-result-message";
+        message.textContent = "Produk tidak ditemukan.";
+        searchResults.appendChild(message);
+        return;
+      }
+
+      // Batasi hasil dropdown agar tidak terlalu panjang
+      const limitedMatches = matches.slice(0, 8);
+
+      limitedMatches.forEach(product => {
+        const result = document.createElement("a");
+        result.className = "search-result-item";
+        result.href = product.link;
+
+        const image = document.createElement("img");
+        image.src = product.image;
+        image.alt = product.name;
+        image.loading = "lazy";
+
+        image.onerror = function() {
+          image.style.display = "none";
+        };
+
+        const info = document.createElement("div");
+        info.className = "search-result-info";
+
+        const name = document.createElement("span");
+        name.className = "search-result-name";
+        name.textContent = product.name;
+
+        const category = document.createElement("span");
+        category.className = "search-result-category";
+        category.textContent = product.category;
+
+        const arrow = document.createElement("span");
+        arrow.className = "search-result-arrow";
+        arrow.textContent = "›";
+
+        info.appendChild(name);
+        info.appendChild(category);
+
+        result.appendChild(image);
+        result.appendChild(info);
+        result.appendChild(arrow);
+
+        // Kalau link belum tersedia, tampilkan pemberitahuan
+        if (product.link === "#") {
+          result.addEventListener("click", function(event) {
+            event.preventDefault();
+            alert("Link produk ini belum tersedia.");
+          });
+        }
+
+        // Setelah hasil dipilih, tutup dropdown
+        result.addEventListener("click", function() {
+          closeSearchResults();
+        });
+
+        searchResults.appendChild(result);
+      });
+    }
+
+    /* INPUT SEARCH */
+
+    searchInput.addEventListener("input", function() {
+      showSearchResults(searchInput.value);
+    });
+
+    // Tutup hasil pencarian jika user menekan Escape
+    searchInput.addEventListener("keydown", function(event) {
+      if (event.key === "Escape") {
+        closeSearchResults();
+        searchInput.blur();
+      }
+    });
+
+    // Tutup dropdown jika user tap di luar area pencarian
+    document.addEventListener("click", function(event) {
+      const searchPanel = document.getElementById("searchPanel");
+      const searchToggle = document.getElementById("searchToggle");
+
+      if (
+        !searchPanel.contains(event.target) &&
+        !searchToggle.contains(event.target)
+      ) {
+        closeSearchResults();
+      }
+    });
+
+    /* KLIK KATEGORI */
+
+    categoryTabs.forEach(tab => {
+      tab.addEventListener("click", function() {
+        categoryTabs.forEach(item =>
+          item.classList.remove("active")
+        );
+
+        tab.classList.add("active");
+
+        searchInput.value = "";
+        closeSearchResults();
+
+        renderProducts(tab.dataset.category);
+
+        document.getElementById("produk").scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      });
+    });
+
+    /* GAME POPULER MEMILIH KATEGORI */
+
+    document.querySelectorAll("[data-category]").forEach(item => {
+      if (item.classList.contains("category-tab")) return;
+
+      item.addEventListener("click", function() {
+        const category = item.dataset.category;
+
+        if (!category || !productData[category]) return;
+
+        categoryTabs.forEach(tab => {
+          tab.classList.toggle(
+            "active",
+            tab.dataset.category === category
+          );
+        });
+
+        renderProducts(category);
+
+        searchInput.value = "";
+        closeSearchResults();
+
+        document.getElementById("produk").scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      });
+    });
+
+    /* MOBILE MENU & SEARCH TOGGLE */
+
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+    const searchToggle = document.getElementById("searchToggle");
+    const searchPanel = document.getElementById("searchPanel");
+
+    menuToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("active");
+      });
+    });
+
+    searchToggle.addEventListener("click", () => {
+      searchPanel.classList.toggle("active");
+
+      if (searchPanel.classList.contains("active")) {
+        searchInput.focus();
+      } else {
+        searchInput.value = "";
+        closeSearchResults();
+      }
+    });
+
+    /* PROMO CAROUSEL */
+
+    const promoTrack = document.getElementById("promoTrack");
+    const promoDots = document.querySelectorAll(".promo-dot");
+
+    let currentSlide = 0;
+    let carouselTimer;
+
+    function showSlide(index) {
+      currentSlide = index;
+
+      promoTrack.style.transform =
+        `translateX(-${index * 100}%)`;
+
+      promoDots.forEach((dot, i) => {
+        dot.classList.toggle("active", i === index);
+      });
+    }
+
+    function startCarousel() {
+      clearInterval(carouselTimer);
+
+      carouselTimer = setInterval(() => {
+        const next = (currentSlide + 1) % promoDots.length;
+        showSlide(next);
+      }, 5000);
+    }
+
+    promoDots.forEach((dot, index) => {
+      dot.addEventListener("click", () => {
+        showSlide(index);
+        startCarousel();
+      });
+    });
+
+    startCarousel();
+
+    /* FOOTER YEAR */
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    /* INITIAL LOAD */
+
+    renderProducts("semua-game");
+  </script>
+
+</body>
+  </html>
