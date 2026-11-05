@@ -267,6 +267,7 @@
       border-radius: 17px;
       border: 1px solid var(--border);
       background: #171d29;
+      touch-action: pan-y;
     }
 
     .promo-track {
@@ -1467,45 +1468,116 @@
       }
     });
 
-    /* PROMO CAROUSEL */
+/* PROMO CAROUSEL */
 
-    const promoTrack = document.getElementById("promoTrack");
-    const promoSlides = document.querySelectorAll(".promo-slide");
-    const promoDots = document.querySelectorAll(".promo-dot");
+const promoWrap = document.querySelector(".promo-wrap");
+const promoTrack = document.getElementById("promoTrack");
+const promoSlides = document.querySelectorAll(".promo-slide");
+const promoDots = document.querySelectorAll(".promo-dot");
 
-    let currentSlide = 0;
-    let carouselTimer;
+let currentSlide = 0;
+let carouselTimer;
 
-    function showSlide(index) {
-      currentSlide = index;
+let startX = 0;
+let startY = 0;
+let isPointerDown = false;
+let bannerWasSwiped = false;
 
-      promoTrack.style.transform =
-        `translateX(-${index * 100}%)`;
+function showSlide(index) {
+  currentSlide = index;
 
-      promoDots.forEach((dot, i) => {
-        dot.classList.toggle("active", i === index);
-      });
-    }
+  promoTrack.style.transform =
+    `translateX(-${index * 100}%)`;
 
-    function startCarousel() {
-      clearInterval(carouselTimer);
+  promoDots.forEach((dot, i) => {
+    dot.classList.toggle("active", i === index);
+  });
+}
 
-      if (promoSlides.length <= 1) return;
+function startCarousel() {
+  clearInterval(carouselTimer);
 
-      carouselTimer = setInterval(() => {
-        const next = (currentSlide + 1) % promoSlides.length;
-        showSlide(next);
-      }, 5000);
-    }
+  if (promoSlides.length <= 1) return;
 
-    promoDots.forEach((dot, index) => {
-      dot.addEventListener("click", () => {
-        showSlide(index);
-        startCarousel();
-      });
-    });
+  carouselTimer = setInterval(() => {
+    const next = (currentSlide + 1) % promoSlides.length;
+    showSlide(next);
+  }, 5000);
+}
 
+/* KLIK TITIK NAVIGASI */
+
+promoDots.forEach((dot, index) => {
+  dot.addEventListener("click", () => {
+    showSlide(index);
     startCarousel();
+  });
+});
+
+/* GESER MANUAL */
+
+promoWrap.addEventListener("pointerdown", (event) => {
+  if (event.target.closest(".promo-dot")) return;
+
+  if (event.pointerType === "mouse" && event.button !== 0) return;
+
+  startX = event.clientX;
+  startY = event.clientY;
+  isPointerDown = true;
+});
+
+promoWrap.addEventListener("pointerup", (event) => {
+  if (!isPointerDown) return;
+
+  isPointerDown = false;
+
+  const distanceX = event.clientX - startX;
+  const distanceY = event.clientY - startY;
+
+  // Pastikan gerakan lebih dominan ke kiri/kanan
+  if (
+    Math.abs(distanceX) > 45 &&
+    Math.abs(distanceX) > Math.abs(distanceY)
+  ) {
+    let nextSlide;
+
+    if (distanceX < 0) {
+      // Geser ke kiri: banner berikutnya
+      nextSlide = (currentSlide + 1) % promoSlides.length;
+    } else {
+      // Geser ke kanan: banner sebelumnya
+      nextSlide =
+        (currentSlide - 1 + promoSlides.length) % promoSlides.length;
+    }
+
+    showSlide(nextSlide);
+    startCarousel();
+
+    bannerWasSwiped = true;
+
+    setTimeout(() => {
+      bannerWasSwiped = false;
+    }, 400);
+  }
+});
+
+promoWrap.addEventListener("pointercancel", () => {
+  isPointerDown = false;
+});
+
+/* Cegah banner terbuka saat selesai digeser */
+
+promoWrap.addEventListener("click", (event) => {
+  if (bannerWasSwiped) {
+    event.preventDefault();
+    event.stopPropagation();
+    bannerWasSwiped = false;
+  }
+}, true);
+
+/* MULAI AUTOPLAY */
+
+startCarousel();
 
     /* FOOTER YEAR */
 
