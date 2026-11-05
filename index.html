@@ -439,12 +439,6 @@
       font-size: 21px;
     }
 
-    .product-count {
-      font-size: 12px;
-      color: var(--muted);
-      white-space: nowrap;
-    }
-
     .product-grid {
       display: grid;
       grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -871,7 +865,6 @@
 
         <div class="product-heading">
           <h2 id="productTitle">Semua Game</h2>
-          <span class="product-count" id="productCount"></span>
         </div>
 
         <div class="product-grid" id="productGrid"></div>
@@ -1145,7 +1138,6 @@
 
     const productGrid = document.getElementById("productGrid");
     const productTitle = document.getElementById("productTitle");
-    const productCount = document.getElementById("productCount");
     const emptyState = document.getElementById("emptyState");
 
     const searchInput = document.getElementById("searchInput");
@@ -1170,9 +1162,6 @@ function renderProducts(category, searchTerm = "") {
   );
 
   productGrid.innerHTML = "";
-
-  productCount.textContent =
-    filteredProducts.length + " produk";
 
   emptyState.style.display =
     filteredProducts.length === 0 ? "block" : "none";
