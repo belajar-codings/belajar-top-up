@@ -468,15 +468,15 @@
       background: var(--bg-card-hover);
     }
 
-    .product-image {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      background: #202a39;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
+.product-image {
+  width: 100%;
+  aspect-ratio: 1 / 0.85;
+  background: #202a39;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
 
     .product-image img {
       width: 100%;
@@ -490,45 +490,21 @@
       font-weight: 700;
     }
 
-    .product-info {
-      padding: 11px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      flex: 1;
-    }
+.product-info {
+  padding: 8px 9px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  flex: 1;
+}
 
-    .product-info h3 {
-      font-size: 12px;
-      line-height: 1.5;
-      min-height: 36px;
-      overflow-wrap: anywhere;
-    }
-
-    .product-price {
-      font-size: 11px;
-      color: var(--cyan);
-      font-weight: 700;
-    }
-
-    .product-button {
-      display: block;
-      width: 100%;
-      text-align: center;
-      border: none;
-      border-radius: 7px;
-      background: #168fff;
-      color: white;
-      font-size: 11px;
-      font-weight: 700;
-      padding: 9px 5px;
-      margin-top: auto;
-      transition: 0.2s;
-    }
-
-    .product-button:hover {
-      background: #0877df;
-    }
+.product-info h3 {
+  font-size: 12px;
+  line-height: 1.4;
+  min-height: 34px;
+  overflow-wrap: anywhere;
+  text-align: center;
+}
 
     .empty-state {
       display: none;
@@ -1179,80 +1155,83 @@
 
     let activeCategory = "semua-game";
 
-    /* RENDER PRODUK DI HALAMAN */
+/* RENDER PRODUK DI HALAMAN */
 
-    function renderProducts(category, searchTerm = "") {
-      const categoryData = productData[category];
+function renderProducts(category, searchTerm = "") {
+  const categoryData = productData[category];
 
-      if (!categoryData) return;
+  if (!categoryData) return;
 
-      activeCategory = category;
-      productTitle.textContent = categoryData.title;
+  activeCategory = category;
+  productTitle.textContent = categoryData.title;
 
-      const filteredProducts = categoryData.products.filter(product =>
-        product.name.toLowerCase().includes(searchTerm.toLowerCase())
-      );
+  const filteredProducts = categoryData.products.filter(product =>
+    product.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
-      productGrid.innerHTML = "";
+  productGrid.innerHTML = "";
 
-      productCount.textContent =
-        filteredProducts.length + " produk";
+  productCount.textContent =
+    filteredProducts.length + " produk";
 
-      emptyState.style.display =
-        filteredProducts.length === 0 ? "block" : "none";
+  emptyState.style.display =
+    filteredProducts.length === 0 ? "block" : "none";
 
-      filteredProducts.forEach(product => {
-        const card = document.createElement("article");
-        card.className = "product-card";
+  filteredProducts.forEach(product => {
+    const card = document.createElement("article");
+    card.className = "product-card";
 
-        const imageWrap = document.createElement("div");
-        imageWrap.className = "product-image";
+    const imageWrap = document.createElement("div");
+    imageWrap.className = "product-image";
 
-        const image = document.createElement("img");
-        image.src = product.image;
-        image.alt = product.name;
-        image.loading = "lazy";
+    const image = document.createElement("img");
+    image.src = product.image;
+    image.alt = product.name;
+    image.loading = "lazy";
 
-        image.onerror = function() {
-          imageWrap.innerHTML =
-            '<span class="product-placeholder">+</span>';
-        };
+    image.onerror = function() {
+      imageWrap.innerHTML =
+        '<span class="product-placeholder">+</span>';
+    };
 
-        imageWrap.appendChild(image);
+    imageWrap.appendChild(image);
 
-        const info = document.createElement("div");
-        info.className = "product-info";
+    const info = document.createElement("div");
+    info.className = "product-info";
 
-        const name = document.createElement("h3");
-        name.textContent = product.name;
+    const name = document.createElement("h3");
+    name.textContent = product.name;
 
-        const price = document.createElement("div");
-        price.className = "product-price";
-        price.textContent = "Cek harga";
+    info.appendChild(name);
 
-        const button = document.createElement("a");
-        button.className = "product-button";
-        button.textContent = "Pilih Produk";
-        button.href = product.link;
+    card.appendChild(imageWrap);
+    card.appendChild(info);
 
-        if (product.link === "#") {
-          button.addEventListener("click", function(event) {
-            event.preventDefault();
-            alert("Link produk ini belum tersedia.");
-          });
-        }
+    /* SELURUH CARD BISA DIKLIK */
 
-        info.appendChild(name);
-        info.appendChild(price);
-        info.appendChild(button);
+    card.style.cursor = "pointer";
+    card.setAttribute("role", "link");
+    card.setAttribute("tabindex", "0");
 
-        card.appendChild(imageWrap);
-        card.appendChild(info);
+    card.addEventListener("click", function() {
+      if (product.link === "#") {
+        alert("Link produk ini belum tersedia.");
+        return;
+      }
 
-        productGrid.appendChild(card);
-      });
-    }
+      window.location.href = product.link;
+    });
 
+    card.addEventListener("keydown", function(event) {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        card.click();
+      }
+    });
+
+    productGrid.appendChild(card);
+  });
+}
     /* SEARCH DROPDOWN: CARI SEMUA KATEGORI */
 
     function closeSearchResults() {
