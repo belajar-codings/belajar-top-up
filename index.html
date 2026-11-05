@@ -262,82 +262,35 @@
     .promo-wrap {
       position: relative;
       overflow: hidden;
+      width: 100%;
+      aspect-ratio: 3 / 1;
       border-radius: 17px;
       border: 1px solid var(--border);
+      background: #171d29;
     }
 
     .promo-track {
       display: flex;
+      width: 100%;
+      height: 100%;
       transition: transform .45s ease;
     }
 
     .promo-slide {
-      min-width: 100%;
-      min-height: 155px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 24px 30px;
+      display: block;
+      flex: 0 0 100%;
+      width: 100%;
+      height: 100%;
       overflow: hidden;
       position: relative;
-      background:
-        radial-gradient(circle at 85% 20%, #55e4ef44, transparent 30%),
-        linear-gradient(110deg, #1e3762, #18243a 65%, #17202d);
     }
 
-    .promo-slide:nth-child(2) {
-      background:
-        radial-gradient(circle at 85% 20%, #a77aff55, transparent 30%),
-        linear-gradient(110deg, #3b245f, #251d3c 65%, #171c2b);
-    }
-
-    .promo-slide:nth-child(3) {
-      background:
-        radial-gradient(circle at 85% 20%, #ffb35b44, transparent 30%),
-        linear-gradient(110deg, #5c3325, #30242b 65%, #171c2b);
-    }
-
-    .promo-copy {
-      position: relative;
-      z-index: 2;
-    }
-
-    .promo-label {
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 1.7px;
-      color: var(--cyan);
-      margin-bottom: 8px;
-    }
-
-    .promo-slide h2 {
-      font-size: clamp(19px, 3vw, 27px);
-      margin-bottom: 7px;
-    }
-
-    .promo-slide p {
-      color: #d0d8e7;
-      font-size: 13px;
-      line-height: 1.5;
-    }
-
-    .promo-cta {
-      display: inline-block;
-      margin-top: 14px;
-      padding: 9px 14px;
-      border-radius: 9px;
-      background: white;
-      color: #18202c;
-      font-size: 12px;
-      font-weight: 800;
-    }
-
-    .promo-art {
-      font-size: clamp(55px, 10vw, 95px);
-      opacity: .85;
-      filter: drop-shadow(0 10px 25px #0005);
-      transform: rotate(-8deg);
-      margin-right: 30px;
+    .promo-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
     }
 
     .promo-controls {
@@ -348,6 +301,10 @@
       align-items: center;
       gap: 6px;
       z-index: 5;
+      padding: 7px 9px;
+      border-radius: 20px;
+      background: rgba(0,0,0,.35);
+      backdrop-filter: blur(6px);
     }
 
     .promo-dot {
@@ -659,22 +616,20 @@
         padding-top: 18px;
       }
 
-      .promo-slide {
-        min-height: 150px;
-        padding: 20px;
+      .promo-controls {
+        bottom: 7px;
+        right: 8px;
+        gap: 5px;
+        padding: 5px 7px;
       }
 
-      .promo-art {
-        margin-right: 5px;
-        font-size: 58px;
+      .promo-dot {
+        width: 6px;
+        height: 6px;
       }
 
-      .promo-slide p {
-        max-width: 210px;
-      }
-
-      .promo-cta {
-        margin-top: 10px;
+      .promo-dot.active {
+        width: 16px;
       }
 
       .section-heading h2,
@@ -805,33 +760,24 @@
           <div class="promo-track" id="promoTrack">
 
             <a href="#game-populer" class="promo-slide">
-              <div class="promo-copy">
-                <div class="promo-label">GAME FAVORIT</div>
-                <h2>Push rank, jangan kehabisan!</h2>
-                <p>Temukan game favoritmu di Belajar Top Up.</p>
-                <span class="promo-cta">Lihat Game →</span>
-              </div>
-              <div class="promo-art">⚔️</div>
+              <img
+                src="assets/banner/contoh-banner.png"
+                alt="Banner promo Belajar Top Up 1"
+              >
             </a>
 
-            <a href="#produk" class="promo-slide">
-              <div class="promo-copy">
-                <div class="promo-label">EXPLORE GAMES</div>
-                <h2>Game pilihanmu ada di sini.</h2>
-                <p>Jelajahi berbagai game dalam satu tempat.</p>
-                <span class="promo-cta">Jelajahi →</span>
-              </div>
-              <div class="promo-art">🎮</div>
+            <a href="#game-populer" class="promo-slide">
+              <img
+                src="assets/banner/contoh2.png"
+                alt="Banner promo Belajar Top Up 2"
+              >
             </a>
 
-            <a href="#produk" class="promo-slide">
-              <div class="promo-copy">
-                <div class="promo-label">BELAJAR TOP UP</div>
-                <h2>Mulai petualanganmu.</h2>
-                <p>Pilih game dan bersiap untuk bermain.</p>
-                <span class="promo-cta">Pilih Game →</span>
-              </div>
-              <div class="promo-art">✨</div>
+            <a href="#game-populer" class="promo-slide">
+              <img
+                src="assets/banner/contoh3.png"
+                alt="Banner promo Belajar Top Up 3"
+              >
             </a>
 
           </div>
@@ -1121,6 +1067,7 @@
       },
 
       /* DATA PRODUK ROBLOX SPECIALIST */
+
       "roblox-specialist": {
         title: "Roblox Specialist",
         products: [
@@ -1523,6 +1470,7 @@
     /* PROMO CAROUSEL */
 
     const promoTrack = document.getElementById("promoTrack");
+    const promoSlides = document.querySelectorAll(".promo-slide");
     const promoDots = document.querySelectorAll(".promo-dot");
 
     let currentSlide = 0;
@@ -1542,8 +1490,10 @@
     function startCarousel() {
       clearInterval(carouselTimer);
 
+      if (promoSlides.length <= 1) return;
+
       carouselTimer = setInterval(() => {
-        const next = (currentSlide + 1) % promoDots.length;
+        const next = (currentSlide + 1) % promoSlides.length;
         showSlide(next);
       }, 5000);
     }
@@ -1568,4 +1518,4 @@
   </script>
 
 </body>
-            </html>
+</html>
