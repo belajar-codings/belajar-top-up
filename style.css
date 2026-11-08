@@ -670,13 +670,13 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 12px 26px;
+  padding: 8px 18px;
   border: 1px solid rgba(22,143,255,0.4);
-  border-radius: 10px;
+  border-radius: 8px;
   background: var(--bg-card);
   color: var(--white);
-  font-size: 13px;
-  font-weight: 700;
+  font-size: 12px;
+  font-weight: 600;
   transition: 0.2s;
 }
 
