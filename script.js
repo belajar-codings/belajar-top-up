@@ -301,7 +301,7 @@ function renderProducts(category, searchTerm = "", preserveExpanded = false) {
   productToggle.hidden = filteredProducts.length <= productLimit;
 
   productToggle.textContent = showAllProducts
-    ? "Kurangi opsi"
+    ? "Tampilkan lebih sedikit"
     : "Tampilkan semua";
 
   productToggle.setAttribute(
