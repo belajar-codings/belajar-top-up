@@ -261,26 +261,55 @@
 
     let activeCategory = "semua-game";
 
+    let showAllProducts = false;
+
+const productToggle = document.getElementById("productToggle");
+
+function getProductLimit() {
+  return window.innerWidth <= 600 ? 9 : 10;
+}
+
 /* RENDER PRODUK DI HALAMAN */
 
-function renderProducts(category, searchTerm = "") {
+function renderProducts(category, searchTerm = "", preserveExpanded = false) {
   const categoryData = productData[category];
-
   if (!categoryData) return;
 
   activeCategory = category;
+
+  if (!preserveExpanded) {
+    showAllProducts = false;
+  }
+
   productTitle.textContent = categoryData.title;
 
   const filteredProducts = categoryData.products.filter(product =>
     product.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const productLimit = getProductLimit();
+
+  const visibleProducts = showAllProducts
+    ? filteredProducts
+    : filteredProducts.slice(0, productLimit);
+
   productGrid.innerHTML = "";
 
   emptyState.style.display =
     filteredProducts.length === 0 ? "block" : "none";
 
-  filteredProducts.forEach(product => {
+  productToggle.hidden = filteredProducts.length <= productLimit;
+
+  productToggle.textContent = showAllProducts
+    ? "Kurangi opsi"
+    : "Tampilkan semua";
+
+  productToggle.setAttribute(
+    "aria-expanded",
+    showAllProducts ? "true" : "false"
+  );
+
+  visibleProducts.forEach(product => {
     const card = document.createElement("article");
     card.className = "product-card";
 
@@ -293,8 +322,7 @@ function renderProducts(category, searchTerm = "") {
     image.loading = "lazy";
 
     image.onerror = function() {
-      imageWrap.innerHTML =
-        '<span class="product-placeholder">+</span>';
+      imageWrap.innerHTML = '<span class="product-placeholder">+</span>';
     };
 
     imageWrap.appendChild(image);
@@ -306,11 +334,8 @@ function renderProducts(category, searchTerm = "") {
     name.textContent = product.name;
 
     info.appendChild(name);
-
     card.appendChild(imageWrap);
     card.appendChild(info);
-
-    /* SELURUH CARD BISA DIKLIK */
 
     card.style.cursor = "pointer";
     card.setAttribute("role", "link");
@@ -335,6 +360,7 @@ function renderProducts(category, searchTerm = "") {
     productGrid.appendChild(card);
   });
 }
+
     /* SEARCH DROPDOWN: CARI SEMUA KATEGORI */
 
     function closeSearchResults() {
