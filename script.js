@@ -366,6 +366,17 @@ productToggle.addEventListener("click", function() {
   renderProducts(activeCategory, "", true);
 });
 
+let lastProductLimit = getProductLimit();
+
+window.addEventListener("resize", function() {
+  const newLimit = getProductLimit();
+
+  if (newLimit !== lastProductLimit) {
+    lastProductLimit = newLimit;
+    renderProducts(activeCategory, "", true);
+  }
+});
+
     /* SEARCH DROPDOWN: CARI SEMUA KATEGORI */
 
     function closeSearchResults() {
