@@ -361,6 +361,11 @@ function renderProducts(category, searchTerm = "", preserveExpanded = false) {
   });
 }
 
+productToggle.addEventListener("click", function() {
+  showAllProducts = !showAllProducts;
+  renderProducts(activeCategory, "", true);
+});
+
     /* SEARCH DROPDOWN: CARI SEMUA KATEGORI */
 
     function closeSearchResults() {
