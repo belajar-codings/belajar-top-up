@@ -49,7 +49,147 @@
             name: "Honkai Star Rail",
             image: "assets/produk/hsr.jpeg",
             link: "https://belajar-topupstore.vcpanel.id/top-up-honkai-star-rail-murah"
-          }
+          },
+           {
+            name: "PUBG Mobile Global",
+            image: "assets/produk/pubgm-global.png",
+            link: "https://belajar-topupstore.vcpanel.id/top-up-pubg-mobile-global-murah-diskon"
+          },
+           {
+            name: "PUBG New State Mobile",
+            image: "assets/produk/pubg-newstate.png",
+            link: "https://belajar-topupstore.vcpanel.id/pubg-new-state-mobile"
+          },
+           {
+            name: "PUBG Mobile Lite",
+            image: "assets/produk/pubgm-lite.png",
+            link: "https://belajar-topupstore.vcpanel.id/pubg-mobile-pubgm-lite"
+          },
+           {
+            name: "Delta Force Garena",
+            image: "assets/produk/deltaforce-garena.png",
+            link: "https://belajar-topupstore.vcpanel.id/delta-force-garena"
+          },
+           {
+            name: "Delta Force Non Garena",
+            image: "assets/produk/deltaforce-nongarena.png",
+            link: "https://belajar-topupstore.vcpanel.id/delta-force"
+          },
+           {
+            name: "Steam Wallet IDR",
+            image: "assets/produk/steamwallet.webp",
+            link: "https://belajar-topupstore.vcpanel.id/top-up-steam-wallet-murah"
+          },
+           {
+            name: "Arena Breakout",
+            image: "assets/produk/arenabreakout.webp",
+            link: "https://belajar-topupstore.vcpanel.id/top-up-arena-breakout-murah-promo-eksklusif-hari-ini"
+          },
+           {
+            name: "Arena Breakout : Infinite",
+            image: "assets/produk/arenabreakout-infinite.png",
+            link: "https://belajar-topupstore.vcpanel.id/arena-breakout-infinite-pc"
+          },
+           {
+            name: "Crossfire : Legends",
+            image: "assets/produk/crossfire-legends.webp",
+            link: "https://belajar-topupstore.vcpanel.id/crossfire-legend"
+          },
+           {
+            name: "Blood Strike",
+            image: "assets/produk/bloodstrikes.webp",
+            link: "https://belajar-topupstore.vcpanel.id/blood-strike"
+          },
+           {
+            name: "Arena of Valor",
+            image: "assets/produk/aov.webp",
+            link: "https://belajar-topupstore.vcpanel.id/top-up-aov-murah-aman-diskon-hari-ini"
+          },
+           {
+            name: "Astral Guardians : Cyber Fantasy",
+            image: "assets/produk/astral-guardians.png",
+            link: "https://belajar-topupstore.vcpanel.id/astral-guardians-cyber-fantasy"
+          },
+           {
+            name: "ASTRA : Knights of Veda",
+            image: "assets/produk/astra-knights.webp",
+            link: "https://belajar-topupstore.vcpanel.id/astra-knights-of-veda"
+          },
+           {
+            name: "Azur Lane",
+            image: "assets/produk/azure-lane.webp",
+            link: "#"
+          },
+           {
+            name: "Bleach Mobile 3D",
+            image: "assets/produk/bleach-mobile.png",
+            link: "https://belajar-topupstore.vcpanel.id/bleach-mobile-3d"
+          },
+           {
+            name: "Stella Sora",
+            image: "assets/produk/stella-sora.webp",
+            link: "#"
+          },
+           {
+            name: "Crystal of Atlan",
+            image: "assets/produk/crystalofatlan.webp",
+            link: "https://belajar-topupstore.vcpanel.id/crystal-of-atlan"
+          },
+           {
+            name: "FC Mobile",
+            image: "assets/produk/fcmobile.webp",
+            link: "https://belajar-topupstore.vcpanel.id/top-up-fifa-mobile-murah-legal-diskon-spesial"
+          },
+           {
+            name: "eFootbal Vilog",
+            image: "assets/produk/efootball-vilog.webp",
+            link: "https://belajar-topupstore.vcpanel.id/efootball-login"
+          },
+           {
+            name: "Garena Undawn",
+            image: "assets/produk/garena-undawn.webp",
+            link: "https://belajar-topupstore.vcpanel.id/top-up-undawn-garena-murah-harga-termurah"
+          },
+           {
+            name: "Goddess of Victory : Nikke",
+            image: "assets/produk/nikke.webp",
+            link: "https://belajar-topupstore.vcpanel.id/goddess-of-victory-nikke"
+          },
+           {
+            name: "Identity V",
+            image: "assets/produk/identity-v.webp",
+            link: "https://belajar-topupstore.vcpanel.id/identity-v"
+          },
+           {
+            name: "Jujutsu Kaisen Phantom Parade",
+            image: "assets/produk/jjk-phantomparade.webp",
+            link: "https://belajar-topupstore.vcpanel.id/jujutsu-kaisen-phantom-parade"
+          },
+           {
+            name: "League of Legends : Wild Rift",
+            image: "assets/produk/lol-wildrift.webp",
+            link: "https://belajar-topupstore.vcpanel.id/top-up-wild-rift-murah-cepat-promo"
+          },
+           {
+            name: "League of Legends PC",
+            image: "assets/produk/lol-pc.webp",
+            link: "https://belajar-topupstore.vcpanel.id/league-of-legends-lolpc"
+          },
+           {
+            name: "Lineage 2 Mobile",
+            image: "assets/produk/lineage2m.webp",
+            link: "https://belajar-topupstore.vcpanel.id/lineage2m"
+          },
+           {
+            name: "Lokapala",
+            image: "assets/produk/lokapala.png",
+            link: "https://belajar-topupstore.vcpanel.id/lokapala"
+          },
+           {
+            name: "Love and Deepspace",
+            image: "assets/produk/loveanddeepspace.png",
+            link: "https://belajar-topupstore.vcpanel.id/love-and-deepspace"
+           }
         ]
       },
 
