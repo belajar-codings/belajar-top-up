@@ -21,7 +21,7 @@
             link: "https://belajar-topupstore.vcpanel.id/top-up-pubg-mobile-murah-uc-cepat-aman"
           },
           {
-            name: "Roblox/Robux Reedem/Gift Card",
+            name: "Roblox/Robux Redeem/Gift Card",
             image: "assets/produk/roblox-logo.jpeg",
             link: "https://belajar-topupstore.vcpanel.id/top-up-roblox-murah-harga-termurah"
           },
@@ -189,6 +189,96 @@
             name: "Love and Deepspace",
             image: "assets/produk/loveanddeepspace.png",
             link: "https://belajar-topupstore.vcpanel.id/love-and-deepspace"
+           },
+           {
+            name: "Marvel Rivals",
+            image: "assets/produk/marvel-rivals.png",
+            link: "https://belajar-topupstore.vcpanel.id/marvel-rivals"
+          },
+           {
+            name: "Magic Chess : Go Go",
+            image: "assets/produk/mcgg.webp",
+            link: "https://belajar-topupstore.vcpanel.id/magic-chess-go-go"
+          },
+           {
+            name: "Metal Slug : Awakening",
+            image: "assets/produk/metalslug-awakening.webp",
+            link: "https://belajar-topupstore.vcpanel.id/top-up-metal-slug-awakening-murah"
+          },
+           {
+            name: "One Punch Man World",
+            image: "assets/produk/opm-world.webp",
+            link: "https://belajar-topupstore.vcpanel.id/one-punch-man-world"
+          },
+           {
+            name: "Point Blank Voucher",
+            image: "assets/produk/pb-voucher.webp",
+            link: "https://belajar-topupstore.vcpanel.id/top-up-cash-pb-murah"
+          },
+           {
+            name: "Point Blank",
+            image: "assets/produk/pb-cash.webp",
+            link: "https://belajar-topupstore.vcpanel.id/point-blank-pb"
+          },
+           {
+            name: "Punishing : Gray Raven",
+            image: "assets/produk/pgr.webp",
+            link: "https://belajar-topupstore.vcpanel.id/punishing-gray-raven"
+          },
+           {
+            name: "Racing Master",
+            image: "assets/produk/racingm.webp",
+            link: "https://belajar-topupstore.vcpanel.id/racing-master"
+          },
+           {
+            name: "Stumble Guys",
+            image: "assets/produk/stumble-guys.webp",
+            link: "https://belajar-topupstore.vcpanel.id/top-up-stumble-guys-murah-harga-spesial"
+          },
+           {
+            name: "Super Sus",
+            image: "assets/produk/super-sus.webp",
+            link: "https://belajar-topupstore.vcpanel.id/top-up-super-sus-murah-promo"
+          },
+           {
+            name: "Solo Leveling : Arise - Vilog",
+            image: "assets/produk/sla-vilog.webp",
+            link: "https://belajar-topupstore.vcpanel.id/top-up-solo-leveling-termurah-login"
+          },
+           {
+            name: "Teamfight Tactics Mobile",
+            image: "assets/produk/tft-mobile.webp",
+            link: "https://belajar-topupstore.vcpanel.id/top-up-tft-murah-cepat-diskon-hari-ini"
+          },
+           {
+            name: "Valorant Voucher",
+            image: "assets/produk/valo-voucher.webp",
+            link: "https://belajar-topupstore.vcpanel.id/valorant-voucher"
+          },
+           {
+            name: "Wuthering Waves - Vilog",
+            image: "assets/produk/wuwa-vilog.webp",
+            link: "https://belajar-topupstore.vcpanel.id/top-up-wuthering-waves-termurah-tercepat"
+          },
+           {
+            name: "Where Winds Meet",
+            image: "assets/produk/wherewinds-meet.webp",
+            link: "https://belajar-topupstore.vcpanel.id/where-winds-meet"
+          },
+           {
+            name: "Zenless Zone Zero",
+            image: "assets/produk/zzz.webp",
+            link: "https://belajar-topupstore.vcpanel.id/zenless-zone-zero-zzz"
+          },
+            {
+            name: "Zepeto",
+            image: "assets/produk/zepeto.webp",
+            link: "https://belajar-topupstore.vcpanel.id/zepeto"
+           },
+           {
+            name: "Token PLN",
+            image: "assets/data.png",
+            link: "#"
            }
         ]
       },
@@ -326,7 +416,7 @@
         title: "Roblox Specialist",
         products: [
           {
-            name: "Roblox/Robux Reedem/Gift Card",
+            name: "Roblox/Robux Redeem/Gift Card",
             image: "assets/produk/roblox-logo.jpeg",
             link: "https://belajar-topupstore.vcpanel.id/top-up-roblox-murah-harga-termurah"
           },
@@ -365,11 +455,6 @@
             name: "OVO",
             image: "assets/ovo.png",
             link: "#"
-          },
-          {
-            name: "ShopeePay",
-            image: "assets/shopeepay.png",
-            link: "#"
           }
         ]
       },
@@ -378,25 +463,40 @@
         title: "Pulsa & Data",
         products: [
           {
-            name: "Pulsa Telkomsel",
+            name: "Axis",
             image: "assets/telkomsel.png",
             link: "#"
           },
           {
-            name: "Pulsa Indosat",
+            name: "By.U",
             image: "assets/indosat.png",
             link: "#"
           },
           {
-            name: "Pulsa XL",
+            name: "Indosat",
             image: "assets/xl.png",
             link: "#"
           },
           {
-            name: "Paket Data",
+            name: "Smartfren",
             image: "assets/data.png",
             link: "#"
-          }
+          },
+           {
+            name: "Telkomsel",
+            image: "assets/data.png",
+            link: "#"
+          },
+           {
+            name: "Tri",
+            image: "assets/data.png",
+            link: "#"
+          },
+           {
+            name: "XL Axiata",
+            image: "assets/data.png",
+            link: "#"
+           }
         ]
       },
 
