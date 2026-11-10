@@ -277,8 +277,33 @@
            },
            {
             name: "Token PLN",
-            image: "assets/data.png",
+            image: "assets/produk/token-pln.png",
+            link: "https://belajar-topupstore.vcpanel.id/token-listrik-pln"
+           },
+           {
+            name: "Eve Echoes",
+            image: "assets/produk/eve-echoes.png",
+            link: "https://belajar-topupstore.vcpanel.id/eve-echoes"
+           },
+           {
+            name: "Honkai Impact 3",
+            image: "assets/produk/hi-3.webp",
             link: "#"
+           },
+           {
+            name: "NBA Infinite",
+            image: "assets/produk/nba-infinite.webp",
+            link: "https://belajar-topupstore.vcpanel.id/nba-infinite"
+           },
+           {
+            name: "Lords Mobile",
+            image: "assets/produk/lords-mobile.webp",
+            link: "https://belajar-topupstore.vcpanel.id/top-up-lord-mobile-murah-diskon-hari-ini"
+           },
+           {
+            name: "Ace Racer",
+            image: "assets/produk/ace-racer.png",
+            link: "https://belajar-topupstore.vcpanel.id/ace-racer"
            }
         ]
       },
