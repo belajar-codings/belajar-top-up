@@ -468,18 +468,18 @@
         products: [
           {
             name: "DANA",
-            image: "assets/dana.png",
-            link: "#"
+            image: "assets/produk/dana.webp",
+            link: "https://belajar-topupstore.vcpanel.id/dana"
           },
           {
             name: "GoPay",
-            image: "assets/gopay.png",
-            link: "#"
+            image: "assets/produk/gopay.webp",
+            link: "https://belajar-topupstore.vcpanel.id/gopay"
           },
           {
             name: "OVO",
-            image: "assets/ovo.png",
-            link: "#"
+            image: "assets/produk/ovo.webp",
+            link: "https://belajar-topupstore.vcpanel.id/ovo"
           }
         ]
       },
@@ -489,38 +489,38 @@
         products: [
           {
             name: "Axis",
-            image: "assets/telkomsel.png",
-            link: "#"
+            image: "assets/produk/axis.png",
+            link: "https://belajar-topupstore.vcpanel.id/axis"
           },
           {
             name: "By.U",
-            image: "assets/indosat.png",
-            link: "#"
+            image: "assets/produk/by-u.webp",
+            link: "https://belajar-topupstore.vcpanel.id/byu"
           },
           {
             name: "Indosat",
-            image: "assets/xl.png",
-            link: "#"
+            image: "assets/produk/indosat.png",
+            link: "https://belajar-topupstore.vcpanel.id/indosat"
           },
           {
             name: "Smartfren",
-            image: "assets/data.png",
-            link: "#"
+            image: "assets/produk/smartfren.png",
+            link: "https://belajar-topupstore.vcpanel.id/smartfren"
           },
            {
             name: "Telkomsel",
-            image: "assets/data.png",
-            link: "#"
+            image: "assets/produk/telkomsel.png",
+            link: "https://belajar-topupstore.vcpanel.id/telkomsel"
           },
            {
             name: "Tri",
-            image: "assets/data.png",
-            link: "#"
+            image: "assets/produk/tri.png",
+            link: "https://belajar-topupstore.vcpanel.id/tri"
           },
            {
             name: "XL Axiata",
-            image: "assets/data.png",
-            link: "#"
+            image: "assets/produk/xl-axiata.png",
+            link: "https://belajar-topupstore.vcpanel.id/xl-axiata"
            }
         ]
       },
