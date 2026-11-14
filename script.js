@@ -529,18 +529,28 @@
         title: "Entertainment",
         products: [
           {
-            name: "Netflix",
-            image: "assets/netflix.png",
-            link: "#"
+            name: "Bigo",
+            image: "assets/produk/bigo.webp",
+            link: "https://belajar-topupstore.vcpanel.id/top-up-bigo-murah-cepat-harga-termurah-hari-ini"
           },
           {
-            name: "Spotify",
-            image: "assets/spotify.png",
-            link: "#"
+            name: "Hago",
+            image: "assets/produk/hago.webp",
+            link: "https://belajar-topupstore.vcpanel.id/hago"
+          },
+          {
+            name: "Lita",
+            image: "assets/produk/lita.png",
+            link: "https://belajar-topupstore.vcpanel.id/lita"
+          },
+          {
+            name: "WeTV",
+            image: "assets/produk/we-tv.png",
+            link: "https://belajar-topupstore.vcpanel.id/wetv"
           },
           {
             name: "YouTube Premium",
-            image: "assets/youtube.png",
+            image: "assets/produk/yt-prem.png",
             link: "#"
           }
         ]
