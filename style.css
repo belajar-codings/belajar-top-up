@@ -689,3 +689,165 @@
 .product-toggle[hidden] {
   display: none !important;
 }
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+  background: #10141d;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding: 55px 0 25px;
+  color: var(--white);
+}
+
+/* FOOTER INTRO */
+
+.footer-intro {
+  text-align: center;
+  max-width: 850px;
+  margin: 0 auto 45px;
+}
+
+.footer-main-logo {
+  display: block;
+  width: 240px;
+  max-width: 75%;
+  height: auto;
+  object-fit: contain;
+  margin: 0 auto 22px;
+}
+
+.footer-intro h2 {
+  color: var(--cyan);
+  font-size: 25px;
+  margin-bottom: 18px;
+}
+
+.footer-intro p {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* DIVIDER */
+
+.footer-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.12);
+  margin: 35px 0;
+}
+
+/* FOOTER CONTENT */
+
+.footer-content {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr;
+  gap: 45px;
+}
+
+.footer-column h3 {
+  font-size: 18px;
+  margin: 0 0 22px;
+  color: var(--white);
+}
+
+.footer-logo {
+  display: block;
+  width: 210px;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 18px;
+}
+
+.footer-column p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.8;
+  margin: 0;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-column li {
+  margin-bottom: 17px;
+}
+
+.footer-column a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.footer-column a:hover {
+  color: var(--cyan);
+}
+
+/* COPYRIGHT */
+
+.footer-bottom {
+  text-align: center;
+}
+
+.footer-bottom p {
+  color: var(--muted);
+  font-size: 13px;
+  margin: 0;
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+  .footer {
+    padding: 40px 0 22px;
+  }
+
+  .footer-main-logo {
+    width: 210px;
+  }
+
+  .footer-intro h2 {
+    font-size: 21px;
+  }
+
+  .footer-intro p {
+    font-size: 13px;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr 1fr;
+    gap: 35px 22px;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
+
+  .footer-logo {
+    width: 190px;
+  }
+
+  .footer-column h3 {
+    font-size: 15px;
+  }
+
+  .footer-column p,
+  .footer-column a {
+    font-size: 13px;
+  }
+
+  .footer-column li {
+    margin-bottom: 14px;
+  }
+
+  .footer-divider {
+    margin: 28px 0;
+  }
+    }
