@@ -874,33 +874,56 @@ window.addEventListener("resize", function() {
       });
     });
 
-    /* MOBILE MENU & SEARCH TOGGLE */
 
-    const menuToggle = document.getElementById("menuToggle");
-    const navLinks = document.getElementById("navLinks");
-    const searchToggle = document.getElementById("searchToggle");
-    const searchPanel = document.getElementById("searchPanel");
+/* MOBILE MENU & SEARCH TOGGLE */
 
-    menuToggle.addEventListener("click", () => {
-      navLinks.classList.toggle("active");
-    });
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+const searchToggle = document.getElementById("searchToggle");
+const searchPanel = document.getElementById("searchPanel");
 
-    navLinks.querySelectorAll("a").forEach(link => {
-      link.addEventListener("click", () => {
-        navLinks.classList.remove("active");
-      });
-    });
+// HAMBURGER MENU
+menuToggle.addEventListener("click", () => {
+  const isMenuOpen = navLinks.classList.contains("active");
 
-    searchToggle.addEventListener("click", () => {
-      searchPanel.classList.toggle("active");
+  if (isMenuOpen) {
+    navLinks.classList.remove("active");
+  } else {
+    // Tutup search sebelum membuka menu
+    searchPanel.classList.remove("active");
+    searchInput.value = "";
+    closeSearchResults();
+    searchInput.blur();
 
-      if (searchPanel.classList.contains("active")) {
-        searchInput.focus();
-      } else {
-        searchInput.value = "";
-        closeSearchResults();
-      }
-    });
+    navLinks.classList.add("active");
+  }
+});
+
+// Tutup menu setelah link dipilih
+navLinks.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("active");
+  });
+});
+
+// SEARCH TOGGLE
+searchToggle.addEventListener("click", () => {
+  const isSearchOpen = searchPanel.classList.contains("active");
+
+  if (isSearchOpen) {
+    searchPanel.classList.remove("active");
+    searchInput.value = "";
+    closeSearchResults();
+    searchInput.blur();
+  } else {
+    // Tutup hamburger sebelum membuka search
+    navLinks.classList.remove("active");
+
+    searchPanel.classList.add("active");
+    searchInput.focus();
+  }
+});
+
 
 /* PROMO CAROUSEL */
 
