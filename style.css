@@ -779,18 +779,6 @@
     padding: 40px 0 22px;
   }
 
-  .footer-main-logo {
-    width: 210px;
-  }
-
-  .footer-intro h2 {
-    font-size: 21px;
-  }
-
-  .footer-intro p {
-    font-size: 13px;
-  }
-
   .footer-content {
     grid-template-columns: 1fr 1fr;
     gap: 35px 22px;
